@@ -1,39 +1,29 @@
 <template>
   <section class="about">
-    <h2>Sobre mí</h2>
-    <p>
-      Soy una diseñadora y desarrolladora web en formación, enfocada en crear
-      interfaces limpias, útiles y adaptadas a distintos dispositivos.
-    </p>
+    <h2>Sobre mi</h2>
 
     <div class="about-grid">
       <article class="about-card">
         <h3>Estudios</h3>
-        <ul>
-          <li>Grado en Diseño Web y Apps Interactivas (en curso)</li>
-          <li>Curso de UX/UI y prototipado en Figma</li>
-          <li>Formación en maquetación responsive con HTML y CSS</li>
-        </ul>
+        <div class="blank-space" />
       </article>
 
       <article class="about-card">
         <h3>Habilidades</h3>
-        <ul>
-          <li>Vue 3 con TypeScript</li>
-          <li>Maquetación con Flexbox y Grid</li>
-          <li>Diseño de interfaces y sistemas visuales</li>
-          <li>Organización de proyectos con Git y GitHub</li>
-        </ul>
+        <div class="blank-space" />
       </article>
     </div>
 
     <article class="about-card">
-      <h3>Información profesional</h3>
-      <p>
-        Me interesa combinar diseño y desarrollo frontend para construir
-        experiencias visuales consistentes y funcionales.
-      </p>
+      <h3>Informacion profesional</h3>
+      <div class="blank-space" />
     </article>
+
+    <p>
+      Joven profesional y creativa, disenadora web, grafica y brand designer.
+      Violinista profesional con gran sensibilidad estetica. Me adapto con
+      facilidad a distintos retos de trabajo y ambientes.
+    </p>
   </section>
 </template>
 
@@ -56,8 +46,8 @@
   padding: 1rem;
 }
 
-ul {
-  padding-left: 1.2rem;
+.blank-space {
+  min-height: 72px;
 }
 
 @media (min-width: 768px) {

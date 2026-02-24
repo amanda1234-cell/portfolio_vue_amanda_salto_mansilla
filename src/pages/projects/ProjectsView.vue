@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { projects } from "@/data/projects";
-import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -8,10 +7,7 @@ import { RouterLink } from "vue-router";
     <h2>Proyectos</h2>
     <div class="projects-grid">
       <article v-for="project in projects" :key="project.id" class="project-card">
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
-        <p><strong>Anio:</strong> {{ project.year }}</p>
-        <RouterLink :to="`/portfolio/proyectos/${project.id}`">Ver detalle</RouterLink>
+        <p><strong>Ano:</strong> {{ project.year }}</p>
       </article>
     </div>
   </section>
