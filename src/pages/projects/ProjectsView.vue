@@ -1,20 +1,16 @@
 <script setup lang="ts">
+import { projects } from "@/data/projects";
 import { RouterLink } from "vue-router";
-
-const sampleProjects = [
-  { id: "1", title: "Proyecto 1", description: "Descripcion breve del trabajo." },
-  { id: "2", title: "Proyecto 2", description: "Descripcion breve del trabajo." },
-  { id: "3", title: "Proyecto 3", description: "Descripcion breve del trabajo." },
-];
 </script>
 
 <template>
   <section>
     <h2>Proyectos</h2>
     <div class="projects-grid">
-      <article v-for="project in sampleProjects" :key="project.id" class="project-card">
+      <article v-for="project in projects" :key="project.id" class="project-card">
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
+        <p><strong>Anio:</strong> {{ project.year }}</p>
         <RouterLink :to="`/portfolio/proyectos/${project.id}`">Ver detalle</RouterLink>
       </article>
     </div>
