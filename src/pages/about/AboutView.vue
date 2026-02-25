@@ -1,6 +1,6 @@
-<template>
+Ôªø<template>
   <section class="about">
-    <h2>Sobre mÌ</h2>
+    <h2>Sobre m√≠</h2>
 
     <div class="about-grid">
       <article class="about-card">
@@ -15,13 +15,13 @@
     </div>
 
     <article class="about-card">
-      <h3>InformaciÛn profesional</h3>
+      <h3>Informaci√≥n profesional</h3>
       <div class="blank-space" />
     </article>
 
     <p>
-      Joven profesional y creativa, diseÒadora web, gr·fica y brand designer.
-      Violinista profesional con gran sensibilidad estÈtica. Me adapto con
+      Joven profesional y creativa, dise√±adora web, gr√°fica y brand designer.
+      Violinista profesional con gran sensibilidad est√©tica. Me adapto con
       facilidad a distintos retos de trabajo y ambientes.
     </p>
   </section>
@@ -56,3 +56,4 @@
   }
 }
 </style>
+

@@ -1,66 +1,66 @@
-<script setup lang="ts">
+ï»¿<script setup lang="ts">
 import { reactive, ref } from "vue";
 
-const name = ref("");
-const email = ref("");
-const message = ref("");
-const sent = ref(false);
-const errors = reactive({
-  name: "",
-  email: "",
-  message: "",
+const nombre = ref("");
+const correo = ref("");
+const mensaje = ref("");
+const enviado = ref(false);
+const errores = reactive({
+  nombre: "",
+  correo: "",
+  mensaje: "",
 });
 
-const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+const esCorreoValido = (valor: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
 
-const validateForm = () => {
-  errors.name = name.value.trim() ? "" : "El nombre es obligatorio.";
-  errors.email = isValidEmail(email.value)
+const validarFormulario = () => {
+  errores.nombre = nombre.value.trim() ? "" : "El nombre es obligatorio.";
+  errores.correo = esCorreoValido(correo.value)
     ? ""
-    : "Introduce un email válido.";
-  errors.message =
-    message.value.trim().length >= 10
+    : "Introduce un email vÃ¡lido.";
+  errores.mensaje =
+    mensaje.value.trim().length >= 10
       ? ""
       : "El mensaje debe tener al menos 10 caracteres.";
 
-  return !errors.name && !errors.email && !errors.message;
+  return !errores.nombre && !errores.correo && !errores.mensaje;
 };
 
-const submitForm = () => {
-  sent.value = false;
-  if (!validateForm()) {
+const enviarFormulario = () => {
+  enviado.value = false;
+  if (!validarFormulario()) {
     return;
   }
-  sent.value = true;
-  name.value = "";
-  email.value = "";
-  message.value = "";
+  enviado.value = true;
+  nombre.value = "";
+  correo.value = "";
+  mensaje.value = "";
 };
 </script>
 
 <template>
   <section class="contact">
     <h2>Contacto</h2>
-    <p>Si quieres colaborar conmigo, envíame un mensaje.</p>
-    <form class="contact-form" @submit.prevent="submitForm">
+    <p>Si quieres colaborar conmigo, envÃ­ame un mensaje.</p>
+    <form class="contact-form" @submit.prevent="enviarFormulario">
       <label>
         Nombre
-        <input v-model="name" type="text" required />
-        <small v-if="errors.name" class="error">{{ errors.name }}</small>
+        <input v-model="nombre" type="text" required />
+        <small v-if="errores.nombre" class="error">{{ errores.nombre }}</small>
       </label>
       <label>
         Email
-        <input v-model="email" type="email" required />
-        <small v-if="errors.email" class="error">{{ errors.email }}</small>
+        <input v-model="correo" type="email" required />
+        <small v-if="errores.correo" class="error">{{ errores.correo }}</small>
       </label>
       <label>
         Mensaje
-        <textarea v-model="message" rows="4" required />
-        <small v-if="errors.message" class="error">{{ errors.message }}</small>
+        <textarea v-model="mensaje" rows="4" required />
+        <small v-if="errores.mensaje" class="error">{{ errores.mensaje }}</small>
       </label>
       <button type="submit">Enviar</button>
     </form>
-    <p v-if="sent" class="success">Mensaje enviado correctamente.</p>
+    <p v-if="enviado" class="success">Mensaje enviado correctamente.</p>
   </section>
 </template>
 

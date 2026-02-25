@@ -1,13 +1,13 @@
-<script setup lang="ts">
-import { projects } from "@/data/projects";
+﻿<script setup lang="ts">
+import { projects as proyectos } from "@/data/projects";
 </script>
 
 <template>
   <section>
     <h2>Proyectos</h2>
     <div class="projects-grid">
-      <article v-for="project in projects" :key="project.id" class="project-card">
-        <p><strong>A�o:</strong> {{ project.year }}</p>
+      <article v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
+        <p><strong>Año:</strong> {{ proyecto.year }}</p>
       </article>
     </div>
   </section>
