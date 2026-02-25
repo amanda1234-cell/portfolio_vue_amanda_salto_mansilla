@@ -7,7 +7,7 @@ import { RouterLink } from "vue-router";
     class="relative mx-auto mt-3 flex min-h-[72vh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-slate-300 bg-[#eceff5] px-6 py-8 md:px-10 md:py-10"
   >
     <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-      Portfolio personal Â· DiseÃ±o web y apps interactivas
+      Portfolio personal · Diseño web y apps interactivas
     </p>
 
     <span
@@ -28,7 +28,7 @@ import { RouterLink } from "vue-router";
         <span
           class="rounded-full border border-[#1239f6] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#1239f6]"
         >
-          DiseÃ±o grÃ¡fico y digital
+          Diseño gráfico y digital
         </span>
         <span
           class="rounded-full border border-[#1239f6] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#1239f6]"
@@ -48,7 +48,7 @@ import { RouterLink } from "vue-router";
           to="/portfolio/sobre-mi"
           class="rounded-full border border-slate-400 px-5 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
         >
-          Sobre mÃ­
+          Sobre mí
         </RouterLink>
         <RouterLink
           to="/portfolio/contacto"

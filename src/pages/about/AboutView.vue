@@ -1,6 +1,6 @@
 <template>
   <section class="about">
-    <h2>Sobre mi</h2>
+    <h2>Sobre mí</h2>
 
     <div class="about-grid">
       <article class="about-card">
@@ -15,13 +15,13 @@
     </div>
 
     <article class="about-card">
-      <h3>Informacion profesional</h3>
+      <h3>Información profesional</h3>
       <div class="blank-space" />
     </article>
 
     <p>
-      Joven profesional y creativa, disenadora web, grafica y brand designer.
-      Violinista profesional con gran sensibilidad estetica. Me adapto con
+      Joven profesional y creativa, diseñadora web, gráfica y brand designer.
+      Violinista profesional con gran sensibilidad estética. Me adapto con
       facilidad a distintos retos de trabajo y ambientes.
     </p>
   </section>

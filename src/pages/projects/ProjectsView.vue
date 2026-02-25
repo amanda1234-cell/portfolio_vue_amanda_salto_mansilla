@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
     <h2>Proyectos</h2>
     <div class="projects-grid">
       <article v-for="project in projects" :key="project.id" class="project-card">
-        <p><strong>Ano:</strong> {{ project.year }}</p>
+        <p><strong>Año:</strong> {{ project.year }}</p>
       </article>
     </div>
   </section>

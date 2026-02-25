@@ -17,7 +17,7 @@ const validateForm = () => {
   errors.name = name.value.trim() ? "" : "El nombre es obligatorio.";
   errors.email = isValidEmail(email.value)
     ? ""
-    : "Introduce un email vÃ¡lido.";
+    : "Introduce un email válido.";
   errors.message =
     message.value.trim().length >= 10
       ? ""
@@ -41,7 +41,7 @@ const submitForm = () => {
 <template>
   <section class="contact">
     <h2>Contacto</h2>
-    <p>Si quieres colaborar conmigo, envÃ­ame un mensaje.</p>
+    <p>Si quieres colaborar conmigo, envíame un mensaje.</p>
     <form class="contact-form" @submit.prevent="submitForm">
       <label>
         Nombre
