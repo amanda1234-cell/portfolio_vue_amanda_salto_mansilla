@@ -10,16 +10,9 @@ import { RouterLink } from "vue-router";
       Portfolio personal · Diseño Gráfico y Brand Designer
     </p>
 
-    <span
-      class="pointer-events-none absolute left-1/2 top-[35%] -translate-x-1/2 text-[20vw] font-medium italic leading-none text-blue-200/55 md:text-[11rem]"
-      aria-hidden="true"
-    >
-      Portfolio
-    </span>
-
     <div class="relative z-10">
       <h1
-        class="text-[15vw] font-black leading-[0.9] tracking-tight text-[#1239f6] sm:text-[5.2rem] md:text-[7rem]"
+        class="portfolio-title text-[15vw] leading-[0.9] tracking-tight text-[#1239f6] sm:text-[5.2rem] md:text-[7rem]"
       >
         Portfolio
       </h1>
@@ -62,4 +55,11 @@ import { RouterLink } from "vue-router";
     <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-slate-400 px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700">(insertar logo iniciales)</p>
   </section>
 </template>
+
+<style scoped>
+.portfolio-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+</style>
 
