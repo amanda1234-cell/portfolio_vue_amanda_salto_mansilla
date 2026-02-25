@@ -1,25 +1,25 @@
-<script setup lang="ts">
+ï»¿<script setup lang="ts">
 import { RouterLink } from "vue-router";
 </script>
 
 <template>
   <section
-    class="relative mx-auto mt-3 flex min-h-[72vh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-slate-300 bg-[#eceff5] px-6 py-8 md:px-10 md:py-10"
+    class="relative mx-auto mt-3 flex min-h-[92svh] w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-slate-300 bg-[#eceff5] px-6 py-8 md:px-12 md:py-10"
   >
     <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600">
-      Portfolio personal · Diseño web y apps interactivas
+      Portfolio personal Â· DiseÃ±o web y apps interactivas
     </p>
 
     <span
-      class="pointer-events-none absolute left-4 top-[28%] text-[20vw] font-medium italic leading-none text-blue-200/55 md:left-10 md:text-[11rem]"
+      class="pointer-events-none absolute left-4 top-[29%] text-[20vw] font-medium italic leading-none text-blue-200/55 md:left-10 md:text-[11rem]"
       aria-hidden="true"
     >
       Portfolio
     </span>
 
-    <div class="relative z-10 mt-auto">
+    <div class="relative z-10 my-auto">
       <h1
-        class="text-[18vw] font-black leading-[0.86] tracking-tight text-[#1239f6] sm:text-[6.5rem] md:text-[8.3rem]"
+        class="text-[19vw] font-black leading-[0.86] tracking-tight text-[#1239f6] sm:text-[7rem] md:text-[9.2rem]"
       >
         Portfolio
       </h1>
@@ -28,7 +28,7 @@ import { RouterLink } from "vue-router";
         <span
           class="rounded-full border border-[#1239f6] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#1239f6]"
         >
-          Diseño gráfico y digital
+          DiseÃ±o grÃ¡fico y digital
         </span>
         <span
           class="rounded-full border border-[#1239f6] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#1239f6]"
@@ -48,7 +48,7 @@ import { RouterLink } from "vue-router";
           to="/portfolio/sobre-mi"
           class="rounded-full border border-slate-400 px-5 py-2 text-sm font-semibold text-slate-800 transition hover:bg-slate-100"
         >
-          Sobre mí
+          Sobre mÃ­
         </RouterLink>
         <RouterLink
           to="/portfolio/contacto"
@@ -58,5 +58,12 @@ import { RouterLink } from "vue-router";
         </RouterLink>
       </div>
     </div>
+
+    <p
+      class="mx-auto mt-auto rounded-full border border-slate-400 px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700"
+    >
+      (insertar logo iniciales)
+    </p>
   </section>
 </template>
+
