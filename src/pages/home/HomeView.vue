@@ -14,20 +14,7 @@ import { RouterLink } from "vue-router";
         <p class="subtitulo-profesion">Diseñadora gráfica y Brand Designer</p>
       </div>
 
-      <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
-        <span
-          class="rounded-full border border-[#6f1526] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#6f1526]"
-        >
-          Diseño gráfico y digital
-        </span>
-        <span
-          class="rounded-full border border-[#6f1526] px-4 py-1 text-sm font-semibold uppercase tracking-wide text-[#6f1526]"
-        >
-          2026
-        </span>
-      </div>
-
-      <div class="mt-[4.75rem] flex flex-wrap justify-center gap-3 md:mt-[6.25rem]">
+      <div class="mt-[3.75rem] flex flex-wrap justify-center gap-3 md:mt-[5.25rem]">
         <RouterLink
           to="/portfolio/proyectos"
           class="rounded-full bg-[#6f1526] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#58101e]"
@@ -63,19 +50,21 @@ import { RouterLink } from "vue-router";
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.05rem;
 }
 
 .letra-p {
   font-family: "PinyonScriptLocal", "Pinyon Script", "Times New Roman", serif;
-  font-size: 1.72em;
+  display: inline-block;
+  font-size: 1.95em;
   font-style: italic;
   font-weight: 400;
   line-height: 0.8;
+  transform: translateY(0.01em);
 }
 
 .resto {
-  margin-left: 0.06em;
+  margin-left: 0.02em;
 }
 
 .subtitulo-profesion {
@@ -84,6 +73,6 @@ import { RouterLink } from "vue-router";
   font-size: 0.85rem;
   font-weight: 700;
   color: #6f1526;
+  margin-top: -0.55rem;
 }
 </style>
-
