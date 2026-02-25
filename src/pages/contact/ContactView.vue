@@ -69,6 +69,11 @@ const enviarFormulario = () => {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  background: #f7f1f2;
+  border: 1px solid #b88e96;
+  border-radius: 16px;
+  padding: 1rem;
+  color: #5a1a27;
 }
 
 .contact-form {
@@ -86,27 +91,29 @@ label {
 
 input,
 textarea {
-  border: 1px solid #cfcfcf;
+  border: 1px solid #b88e96;
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
+  background: #fffafb;
+  color: #5a1a27;
 }
 
 button {
   width: fit-content;
   padding: 0.6rem 1rem;
-  border: 1px solid #111;
+  border: 1px solid #6f1526;
   border-radius: 8px;
-  background: #111;
+  background: #6f1526;
   color: #fff;
   cursor: pointer;
 }
 
 .error {
-  color: #b42318;
+  color: #8e263a;
   font-size: 0.85rem;
 }
 
 .success {
-  color: #067647;
+  color: #6f1526;
 }
 </style>

@@ -11,21 +11,40 @@ const proyecto = computed(() =>
 </script>
 
 <template>
-  <section v-if="proyecto">
+  <section v-if="proyecto" class="detalle">
     <h2>Detalle del proyecto</h2>
     <h3>{{ proyecto.title }}</h3>
     <p>{{ proyecto.description }}</p>
     <p><strong>Año:</strong> {{ proyecto.year }}</p>
     <p><strong>Tecnologías:</strong> {{ proyecto.technologies.join(", ") }}</p>
-    <a :href="proyecto.liveUrl" target="_blank" rel="noreferrer">Ver proyecto</a>
+    <a class="enlace" :href="proyecto.liveUrl" target="_blank" rel="noreferrer">Ver proyecto</a>
     <p>
       <RouterLink to="/portfolio/proyectos">Volver a proyectos</RouterLink>
     </p>
   </section>
 
-  <section v-else>
+  <section v-else class="detalle">
     <h2>Proyecto no encontrado</h2>
     <p>No existe un proyecto con el id: {{ idProyecto }}</p>
     <RouterLink to="/portfolio/proyectos">Volver a proyectos</RouterLink>
   </section>
 </template>
+
+<style scoped>
+.detalle {
+  background: #f7f1f2;
+  border: 1px solid #b88e96;
+  border-radius: 16px;
+  padding: 1rem;
+  color: #5a1a27;
+}
+
+.detalle a {
+  color: #6f1526;
+  font-weight: 600;
+}
+
+.enlace {
+  text-decoration: underline;
+}
+</style>

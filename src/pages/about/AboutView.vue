@@ -32,6 +32,11 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background: #f7f1f2;
+  border: 1px solid #b88e96;
+  border-radius: 16px;
+  padding: 1rem;
+  color: #5a1a27;
 }
 
 .about-grid {
@@ -41,9 +46,10 @@
 }
 
 .about-card {
-  border: 1px solid #ddd;
+  border: 1px solid #b88e96;
   border-radius: 10px;
   padding: 1rem;
+  background: #fffafb;
 }
 
 .blank-space {
