@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <section
-    class="relative mx-auto mt-3 flex min-h-[88svh] w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-3xl border border-[#b88e96] bg-[#f7f1f2] px-4 py-8 pb-20 text-center sm:px-6 md:min-h-[92svh] md:px-12 md:py-10"
+    class="relative mx-auto mt-3 flex min-h-[88svh] w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#f7f1f2] px-4 py-8 pb-20 text-center sm:px-6 md:min-h-[92svh] md:px-12 md:py-10"
   >
     <div class="relative z-10">
       <div class="titulo-wrap">
@@ -23,20 +23,20 @@ import { RouterLink } from "vue-router";
         </RouterLink>
         <RouterLink
           to="/portfolio/sobre-mi"
-          class="w-full rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5] sm:w-auto"
+          class="w-full rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#e8d7db] sm:w-auto"
         >
           Sobre mí
         </RouterLink>
         <RouterLink
           to="/portfolio/contacto"
-          class="w-full rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5] sm:w-auto"
+          class="w-full rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#e8d7db] sm:w-auto"
         >
           Contacto
         </RouterLink>
       </div>
     </div>
 
-    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-[#b88e96] px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#6f1526]">(insertar logo iniciales)</p>
+    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-[#efe2e5] px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#6f1526]">(insertar logo iniciales)</p>
   </section>
 </template>
 

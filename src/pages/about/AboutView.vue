@@ -33,7 +33,6 @@
   flex-direction: column;
   gap: 1rem;
   background: #f7f1f2;
-  border: 1px solid #b88e96;
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
@@ -46,7 +45,6 @@
 }
 
 .about-card {
-  border: 1px solid #b88e96;
   border-radius: 10px;
   padding: 0.85rem;
   background: #fffafb;

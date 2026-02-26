@@ -70,7 +70,6 @@ const enviarFormulario = () => {
   flex-direction: column;
   gap: 0.75rem;
   background: #f7f1f2;
-  border: 1px solid #b88e96;
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
@@ -92,7 +91,7 @@ label {
 
 input,
 textarea {
-  border: 1px solid #b88e96;
+  border: 0;
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
   background: #fffafb;
@@ -102,7 +101,7 @@ textarea {
 button {
   width: 100%;
   padding: 0.6rem 1rem;
-  border: 1px solid #6f1526;
+  border: 0;
   border-radius: 8px;
   background: #6f1526;
   color: #fff;

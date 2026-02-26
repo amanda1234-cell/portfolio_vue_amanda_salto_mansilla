@@ -52,7 +52,7 @@ import { RouterLink, RouterView } from "vue-router";
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid #b88e96;
+  background: #efe2e5;
   border-radius: 999px;
   color: #5a1a27;
   transition: all 0.2s ease;
@@ -61,7 +61,6 @@ import { RouterLink, RouterView } from "vue-router";
 .home-link:hover {
   background: #efe2e5;
   color: #6f1526;
-  border-color: #6f1526;
 }
 
 .site-title {

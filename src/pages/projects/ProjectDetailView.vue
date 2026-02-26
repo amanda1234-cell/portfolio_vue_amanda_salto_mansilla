@@ -33,7 +33,6 @@ const proyecto = computed(() =>
 <style scoped>
 .detalle {
   background: #f7f1f2;
-  border: 1px solid #b88e96;
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
