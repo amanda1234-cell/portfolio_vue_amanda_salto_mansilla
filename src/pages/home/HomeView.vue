@@ -4,7 +4,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <section
-    class="relative mx-auto mt-3 flex min-h-[92svh] w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-3xl border border-[#b88e96] bg-[#f7f1f2] px-6 py-8 text-center md:px-12 md:py-10"
+    class="relative mx-auto mt-3 flex min-h-[88svh] w-full max-w-6xl flex-col items-center justify-center overflow-hidden rounded-3xl border border-[#b88e96] bg-[#f7f1f2] px-4 py-8 pb-20 text-center sm:px-6 md:min-h-[92svh] md:px-12 md:py-10"
   >
     <div class="relative z-10">
       <div class="titulo-wrap">
@@ -14,22 +14,22 @@ import { RouterLink } from "vue-router";
         <p class="subtitulo-profesion">Diseñadora gráfica y Brand Designer</p>
       </div>
 
-      <div class="mt-[3.75rem] flex flex-wrap justify-center gap-3 md:mt-[5.25rem]">
+      <div class="mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center md:mt-[5.25rem]">
         <RouterLink
           to="/portfolio/proyectos"
-          class="rounded-full bg-[#6f1526] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#58101e]"
+          class="w-full rounded-full bg-[#6f1526] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#58101e] sm:w-auto"
         >
           Ver proyectos
         </RouterLink>
         <RouterLink
           to="/portfolio/sobre-mi"
-          class="rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5]"
+          class="w-full rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5] sm:w-auto"
         >
           Sobre mí
         </RouterLink>
         <RouterLink
           to="/portfolio/contacto"
-          class="rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5]"
+          class="w-full rounded-full border border-[#b88e96] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#efe2e5] sm:w-auto"
         >
           Contacto
         </RouterLink>

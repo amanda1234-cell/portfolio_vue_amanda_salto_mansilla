@@ -25,7 +25,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 <style scoped>
 .portfolio-layout {
-  padding: 1.5rem;
+  padding: 1rem;
   max-width: 960px;
   margin: 0 auto;
   color: #5a1a27;
@@ -83,5 +83,27 @@ import { RouterLink, RouterView } from "vue-router";
 
 .portfolio-nav a.router-link-active {
   color: #6f1526;
+}
+
+@media (min-width: 768px) {
+  .portfolio-layout {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-header {
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-nav {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .portfolio-nav a {
+    font-size: 0.95rem;
+  }
 }
 </style>

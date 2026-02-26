@@ -35,7 +35,7 @@ const proyecto = computed(() =>
   background: #f7f1f2;
   border: 1px solid #b88e96;
   border-radius: 16px;
-  padding: 1rem;
+  padding: 0.85rem;
   color: #5a1a27;
 }
 
@@ -46,5 +46,11 @@ const proyecto = computed(() =>
 
 .enlace {
   text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .detalle {
+    padding: 1rem;
+  }
 }
 </style>

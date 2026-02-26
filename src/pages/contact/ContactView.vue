@@ -72,7 +72,7 @@ const enviarFormulario = () => {
   background: #f7f1f2;
   border: 1px solid #b88e96;
   border-radius: 16px;
-  padding: 1rem;
+  padding: 0.85rem;
   color: #5a1a27;
 }
 
@@ -80,6 +80,7 @@ const enviarFormulario = () => {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  width: 100%;
   max-width: 560px;
 }
 
@@ -99,7 +100,7 @@ textarea {
 }
 
 button {
-  width: fit-content;
+  width: 100%;
   padding: 0.6rem 1rem;
   border: 1px solid #6f1526;
   border-radius: 8px;
@@ -115,5 +116,15 @@ button {
 
 .success {
   color: #6f1526;
+}
+
+@media (min-width: 640px) {
+  .contact {
+    padding: 1rem;
+  }
+
+  button {
+    width: fit-content;
+  }
 }
 </style>

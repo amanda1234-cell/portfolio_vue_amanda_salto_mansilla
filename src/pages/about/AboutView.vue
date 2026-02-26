@@ -35,7 +35,7 @@
   background: #f7f1f2;
   border: 1px solid #b88e96;
   border-radius: 16px;
-  padding: 1rem;
+  padding: 0.85rem;
   color: #5a1a27;
 }
 
@@ -48,7 +48,7 @@
 .about-card {
   border: 1px solid #b88e96;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.85rem;
   background: #fffafb;
 }
 
@@ -57,8 +57,16 @@
 }
 
 @media (min-width: 768px) {
+  .about {
+    padding: 1rem;
+  }
+
   .about-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-card {
+    padding: 1rem;
   }
 }
 </style>

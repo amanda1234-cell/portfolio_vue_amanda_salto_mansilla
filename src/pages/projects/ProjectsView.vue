@@ -18,7 +18,7 @@ import { projects as proyectos } from "@/data/projects";
   background: #f7f1f2;
   border: 1px solid #b88e96;
   border-radius: 16px;
-  padding: 1rem;
+  padding: 0.85rem;
   color: #5a1a27;
 }
 
@@ -31,7 +31,17 @@ import { projects as proyectos } from "@/data/projects";
 .project-card {
   border: 1px solid #b88e96;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.85rem;
   background: #fffafb;
+}
+
+@media (min-width: 768px) {
+  .proyectos {
+    padding: 1rem;
+  }
+
+  .project-card {
+    padding: 1rem;
+  }
 }
 </style>
