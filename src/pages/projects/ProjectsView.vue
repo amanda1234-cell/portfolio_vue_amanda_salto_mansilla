@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <section class="proyectos">
-    <h2>Proyectos</h2>
+    <h2 class="titulo-editorial">Proyectos</h2>
     <div class="projects-grid">
       <article v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
         <div class="card-cabecera">
@@ -28,6 +28,14 @@ import { RouterLink } from "vue-router";
 </template>
 
 <style scoped>
+.titulo-editorial {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
 .proyectos {
   background: #f7f1f2;
   border-radius: 16px;

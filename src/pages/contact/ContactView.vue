@@ -42,7 +42,7 @@ const enviarFormulario = () => {
 
 <template>
   <section class="contact">
-    <h2>Contacto</h2>
+    <h2 class="titulo-editorial">Contacto</h2>
     <p>Si quieres colaborar conmigo, envíame un mensaje.</p>
     <form class="contact-form" @submit.prevent="enviarFormulario">
       <label>
@@ -80,8 +80,6 @@ const enviarFormulario = () => {
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
-  min-height: min(82svh, 760px);
-  justify-content: space-between;
 }
 
 .contact-form {
@@ -90,6 +88,15 @@ const enviarFormulario = () => {
   gap: 0.75rem;
   width: 100%;
   max-width: 560px;
+  margin-top: 0.8rem;
+}
+
+.titulo-editorial {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
 label {
@@ -113,6 +120,11 @@ textarea {
   color: #5a1a27;
 }
 
+textarea {
+  min-height: 170px;
+  resize: vertical;
+}
+
 .error {
   color: #8e263a;
   font-size: 0.85rem;
@@ -125,7 +137,6 @@ textarea {
 @media (min-width: 640px) {
   .contact {
     padding: 1.25rem;
-    min-height: min(88svh, 900px);
   }
 }
 </style>
