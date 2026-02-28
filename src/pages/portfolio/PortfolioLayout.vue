@@ -26,7 +26,7 @@ import { RouterLink, RouterView } from "vue-router";
 <style scoped>
 .portfolio-layout {
   padding: 1rem;
-  max-width: 960px;
+  max-width: 1320px;
   margin: 0 auto;
   color: #5a1a27;
 }

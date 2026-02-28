@@ -1,4 +1,6 @@
 ﻿<script setup lang="ts">
+import { ChevronDown, ChevronUp } from "lucide-vue-next";
+
 const irASeccion = (id: string) => {
   const elemento = document.getElementById(id);
   if (!elemento) return;
@@ -16,7 +18,7 @@ const irASeccion = (id: string) => {
 
         <div class="texto-who">
           <p class="etiqueta">Sobre mí</p>
-          <h2>ESTO<br />SOY YO</h2>
+          <h2>QUIÉN<br />SOY</h2>
 
           <div class="bloque-descripcion">
             <p class="descripcion-grande">
@@ -37,7 +39,7 @@ const irASeccion = (id: string) => {
         aria-label="Deslizar hacia habilidades"
         @click="irASeccion('bloque-experiencia')"
       >
-        ↓
+        <ChevronDown :size="20" />
       </button>
     </article>
 
@@ -86,7 +88,7 @@ const irASeccion = (id: string) => {
         aria-label="Ir a formación"
         @click="irASeccion('bloque-formacion')"
       >
-        ↓
+        <ChevronDown :size="20" />
       </button>
     </article>
 
@@ -119,7 +121,7 @@ const irASeccion = (id: string) => {
         aria-label="Volver a sobre mí"
         @click="irASeccion('inicio-sobre-mi')"
       >
-        ↑
+        <ChevronUp :size="20" />
       </button>
     </article>
   </section>
@@ -168,7 +170,7 @@ const irASeccion = (id: string) => {
 }
 
 .texto-who {
-  padding: 0.9rem 0.8rem 0.7rem 1rem;
+  padding: 1.1rem 1rem 0.9rem 1.2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -191,13 +193,14 @@ const irASeccion = (id: string) => {
 
 .bloque-descripcion {
   margin-top: auto;
+  padding-top: clamp(2.6rem, 9vh, 6rem);
 }
 
 .descripcion-grande {
   margin: 0 0 0.75rem;
-  font-size: clamp(0.82rem, 1.25vw, 0.95rem);
+  font-size: clamp(0.78rem, 1.05vw, 0.92rem);
   line-height: 1.34;
-  max-width: 44ch;
+  max-width: 40ch;
   text-align: right;
 }
 
@@ -213,12 +216,17 @@ const irASeccion = (id: string) => {
   height: 44px;
   border: 0;
   border-radius: 999px;
-  background: #6f1526;
-  color: #fff;
-  font-size: 1.35rem;
+  background: #efe2e5;
+  color: #5a1a27;
   text-decoration: none;
   z-index: 2;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flecha-scroll:hover {
+  background: #e8d7db;
+  color: #6f1526;
 }
 
 .skills {
@@ -296,18 +304,24 @@ const irASeccion = (id: string) => {
   height: 44px;
   border: 0;
   border-radius: 999px;
-  background: #6f1526;
-  color: #fff;
-  font-size: 1.35rem;
+  background: #efe2e5;
+  color: #5a1a27;
   text-decoration: none;
   z-index: 2;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flecha-apartado:hover {
+  background: #e8d7db;
+  color: #6f1526;
 }
 
 @media (min-width: 900px) {
   .who-am-i,
   .skills {
-    padding: 1.25rem;
+    padding: 1.9rem 1.9rem 5.4rem;
+    min-height: min(90svh, 980px);
   }
 
   .who-contenido {
@@ -333,10 +347,21 @@ const irASeccion = (id: string) => {
 
   .texto-who {
     min-height: 100%;
+    padding: 1.5rem 1.5rem 1.1rem 1.8rem;
+  }
+
+  .bloque-descripcion {
+    padding-top: clamp(5rem, 14vh, 11rem);
   }
 
   .skills-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+  }
+
+  .skills-columna {
+    min-height: 280px;
+    padding: 1.4rem;
   }
 }
 </style>

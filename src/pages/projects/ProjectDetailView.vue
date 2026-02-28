@@ -36,6 +36,9 @@ const proyecto = computed(() =>
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
+  min-height: min(82svh, 760px);
+  display: flex;
+  flex-direction: column;
 }
 
 .detalle a {
@@ -49,7 +52,8 @@ const proyecto = computed(() =>
 
 @media (min-width: 768px) {
   .detalle {
-    padding: 1rem;
+    padding: 1.25rem;
+    min-height: min(88svh, 900px);
   }
 }
 </style>
