@@ -2,6 +2,7 @@ import HomeView from "@/pages/home/HomeView.vue";
 import AboutView from "@/pages/about/AboutView.vue";
 import ContactView from "@/pages/contact/ContactView.vue";
 import PortfolioLayout from "@/pages/portfolio/PortfolioLayout.vue";
+import ProjectCategoriesView from "@/pages/projects/ProjectCategoriesView.vue";
 import ProjectDetailView from "@/pages/projects/ProjectDetailView.vue";
 import ProjectsView from "@/pages/projects/ProjectsView.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -26,6 +27,11 @@ export const router = createRouter({
           path: "proyectos",
           name: "projects",
           component: ProjectsView,
+        },
+        {
+          path: "proyectos/categorias",
+          name: "project-categories",
+          component: ProjectCategoriesView,
         },
         {
           path: "proyectos/:id",

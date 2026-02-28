@@ -17,7 +17,7 @@ import { RouterLink } from "vue-router";
 
       <div class="mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center md:mt-[5.25rem]">
         <RouterLink
-          to="/portfolio/proyectos"
+          to="/portfolio/proyectos/categorias"
           class="w-full rounded-full bg-[#6f1526] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#58101e] sm:w-auto inline-flex items-center justify-center gap-2"
         >
           <BriefcaseBusiness :size="18" />
