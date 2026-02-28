@@ -6,7 +6,13 @@ import { RouterLink } from "vue-router";
 
 <template>
   <section class="proyectos">
-    <h2 class="titulo-editorial">Proyectos</h2>
+    <div class="encabezado-proyectos">
+      <h2 class="titulo-editorial">Proyectos</h2>
+      <RouterLink to="/portfolio/proyectos/categorias" class="boton-categorias">
+        Ver categorías
+      </RouterLink>
+    </div>
+
     <div class="projects-grid">
       <article v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
         <div class="card-cabecera">
@@ -16,7 +22,7 @@ import { RouterLink } from "vue-router";
 
         <p class="card-texto">{{ proyecto.description }}</p>
 
-        <p class="meta"><CalendarDays :size="18" /><strong>Año:</strong> {{ proyecto.year }}</p>
+        <p class="meta"><CalendarDays :size="18" />Año: {{ proyecto.year }}</p>
 
         <RouterLink :to="`/portfolio/proyectos/${proyecto.id}`" class="enlace-detalle">
           Ver detalle
@@ -29,7 +35,7 @@ import { RouterLink } from "vue-router";
 
 <style scoped>
 .titulo-editorial {
-  margin: 0 0 0.65rem;
+  margin: 0;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -41,6 +47,30 @@ import { RouterLink } from "vue-router";
   color: #5a1a27;
   display: flex;
   flex-direction: column;
+}
+
+.encabezado-proyectos {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.boton-categorias {
+  border-radius: 999px;
+  background: #efe2e5;
+  color: #5a1a27;
+  text-decoration: none;
+  padding: 0.38rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.boton-categorias:hover {
+  background: #e8d7db;
+  color: #6f1526;
 }
 
 .projects-grid {
