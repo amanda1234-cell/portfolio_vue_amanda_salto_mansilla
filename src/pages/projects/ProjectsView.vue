@@ -37,28 +37,36 @@ import { RouterLink } from "vue-router";
 }
 
 .proyectos {
-  background: #f7f1f2;
-  border-radius: 16px;
-  padding: 0.85rem;
+  padding: 0;
   color: #5a1a27;
-  min-height: min(82svh, 760px);
   display: flex;
   flex-direction: column;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
 }
 
 .project-card {
-  border-radius: 10px;
-  padding: 0.9rem;
+  border-radius: 16px;
+  padding: 1rem;
   background: #fffafb;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  box-shadow:
+    0 8px 20px rgba(111, 21, 38, 0.08),
+    0 2px 6px rgba(111, 21, 38, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 28px rgba(111, 21, 38, 0.12),
+    0 4px 10px rgba(111, 21, 38, 0.1);
 }
 
 .card-cabecera {
@@ -110,13 +118,14 @@ import { RouterLink } from "vue-router";
 }
 
 @media (min-width: 768px) {
-  .proyectos {
-    padding: 1.25rem;
-    min-height: min(88svh, 900px);
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  .project-card {
-    padding: 1rem;
+@media (min-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 </style>
