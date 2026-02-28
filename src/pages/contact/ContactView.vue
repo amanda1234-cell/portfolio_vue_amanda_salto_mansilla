@@ -1,4 +1,6 @@
 ﻿<script setup lang="ts">
+import { Button } from "@/components/ui/button";
+import { Mail, MessageSquareText, UserRound } from "lucide-vue-next";
 import { reactive, ref } from "vue";
 
 const nombre = ref("");
@@ -44,21 +46,26 @@ const enviarFormulario = () => {
     <p>Si quieres colaborar conmigo, envíame un mensaje.</p>
     <form class="contact-form" @submit.prevent="enviarFormulario">
       <label>
-        Nombre
+        <span class="campo-titulo"><UserRound :size="18" />Nombre</span>
         <input v-model="nombre" type="text" required />
         <small v-if="errores.nombre" class="error">{{ errores.nombre }}</small>
       </label>
       <label>
-        Email
+        <span class="campo-titulo"><Mail :size="18" />Email</span>
         <input v-model="correo" type="email" required />
         <small v-if="errores.correo" class="error">{{ errores.correo }}</small>
       </label>
       <label>
-        Mensaje
+        <span class="campo-titulo"><MessageSquareText :size="18" />Mensaje</span>
         <textarea v-model="mensaje" rows="4" required />
         <small v-if="errores.mensaje" class="error">{{ errores.mensaje }}</small>
       </label>
-      <button type="submit">Enviar</button>
+      <Button
+        type="submit"
+        class="w-full rounded-xl border-0 bg-[#6f1526] text-white hover:bg-[#58101e] sm:w-fit"
+      >
+        Enviar
+      </Button>
     </form>
     <p v-if="enviado" class="success">Mensaje enviado correctamente.</p>
   </section>
@@ -73,6 +80,8 @@ const enviarFormulario = () => {
   border-radius: 16px;
   padding: 0.85rem;
   color: #5a1a27;
+  min-height: min(82svh, 760px);
+  justify-content: space-between;
 }
 
 .contact-form {
@@ -89,6 +98,12 @@ label {
   gap: 0.35rem;
 }
 
+.campo-titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 input,
 textarea {
   border: 0;
@@ -96,16 +111,6 @@ textarea {
   padding: 0.6rem 0.75rem;
   background: #fffafb;
   color: #5a1a27;
-}
-
-button {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  border: 0;
-  border-radius: 8px;
-  background: #6f1526;
-  color: #fff;
-  cursor: pointer;
 }
 
 .error {
@@ -119,11 +124,8 @@ button {
 
 @media (min-width: 640px) {
   .contact {
-    padding: 1rem;
-  }
-
-  button {
-    width: fit-content;
+    padding: 1.25rem;
+    min-height: min(88svh, 900px);
   }
 }
 </style>
