@@ -1,5 +1,6 @@
 export type Project = {
   id: string;
+  category: "branding" | "logotipos" | "social-media";
   title: string;
   description: string;
   year: string;
@@ -11,6 +12,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "branding-cafe",
+    category: "branding",
     title: "Branding para cafeteria local",
     description:
       "Identidad visual completa con piezas para redes sociales, cartel y carta de productos.",
@@ -21,6 +23,7 @@ export const projects: Project[] = [
   },
   {
     id: "web-evento-cultural",
+    category: "social-media",
     title: "Web de evento cultural",
     description:
       "Landing page responsive con agenda, ponentes y formulario de inscripcion.",
@@ -31,6 +34,7 @@ export const projects: Project[] = [
   },
   {
     id: "app-recetas",
+    category: "logotipos",
     title: "App de recetas interactivas",
     description:
       "Proyecto academico con filtros por ingredientes y guardado de favoritos.",

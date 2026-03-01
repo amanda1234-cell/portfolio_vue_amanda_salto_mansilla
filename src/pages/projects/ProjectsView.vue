@@ -1,21 +1,56 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { Card } from "@/components/ui/card";
-import { CalendarDays, FolderKanban, MoveRight } from "lucide-vue-next";
 import { projects as proyectos } from "@/data/projects";
-import { RouterLink } from "vue-router";
+import { CalendarDays, FolderKanban, MoveRight } from "lucide-vue-next";
+import { computed } from "vue";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
+
+const categoriasValidas = ["branding", "logotipos", "social-media"] as const;
+type Categoria = (typeof categoriasValidas)[number];
+
+const categoriaActiva = computed<Categoria | null>(() => {
+  const categoria = route.query.categoria;
+  if (typeof categoria !== "string") return null;
+  return categoriasValidas.includes(categoria as Categoria) ? (categoria as Categoria) : null;
+});
+
+const textoCategoriaActiva = computed(() => {
+  const etiquetas: Record<Categoria, string> = {
+    branding: "Branding",
+    logotipos: "Logotipos",
+    "social-media": "Social Media",
+  };
+
+  return categoriaActiva.value ? etiquetas[categoriaActiva.value] : "";
+});
+
+const proyectosFiltrados = computed(() =>
+  categoriaActiva.value
+    ? proyectos.filter((proyecto) => proyecto.category === categoriaActiva.value)
+    : proyectos,
+);
 </script>
 
 <template>
   <section class="proyectos">
     <div class="encabezado-proyectos">
       <h2 class="titulo-editorial">Proyectos</h2>
-      <RouterLink to="/portfolio/proyectos/categorias" class="boton-categorias">
-        Ver categorías
-      </RouterLink>
+      <div class="acciones-encabezado">
+        <RouterLink to="/portfolio/proyectos/categorias" class="boton-categorias">
+          Ver categorias
+        </RouterLink>
+        <RouterLink v-if="categoriaActiva" to="/portfolio/proyectos" class="boton-categorias">
+          Ver todos
+        </RouterLink>
+      </div>
     </div>
 
+    <p v-if="categoriaActiva" class="filtro-activo">Filtrando por: {{ textoCategoriaActiva }}</p>
+
     <div class="projects-grid">
-      <Card v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
+      <Card v-for="proyecto in proyectosFiltrados" :key="proyecto.id" class="project-card">
         <div class="card-cabecera">
           <span class="icono-cabecera"><FolderKanban :size="18" /></span>
           <h3>{{ proyecto.title }}</h3>
@@ -23,7 +58,7 @@ import { RouterLink } from "vue-router";
 
         <p class="card-texto">{{ proyecto.description }}</p>
 
-        <p class="meta"><CalendarDays :size="18" />Año: {{ proyecto.year }}</p>
+        <p class="meta"><CalendarDays :size="18" />Ano: {{ proyecto.year }}</p>
 
         <RouterLink :to="`/portfolio/proyectos/${proyecto.id}`" class="enlace-detalle">
           Ver detalle
@@ -31,6 +66,10 @@ import { RouterLink } from "vue-router";
         </RouterLink>
       </Card>
     </div>
+
+    <p v-if="proyectosFiltrados.length === 0" class="sin-resultados">
+      No hay proyectos en esta categoria todavia.
+    </p>
   </section>
 </template>
 
@@ -58,6 +97,12 @@ import { RouterLink } from "vue-router";
   gap: 0.8rem;
 }
 
+.acciones-encabezado {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
 .boton-categorias {
   border-radius: 999px;
   background: #efe2e5;
@@ -72,6 +117,11 @@ import { RouterLink } from "vue-router";
 .boton-categorias:hover {
   background: #e8d7db;
   color: #6f1526;
+}
+
+.filtro-activo {
+  margin: 0 0 0.85rem;
+  font-size: 0.92rem;
 }
 
 .projects-grid {
@@ -140,6 +190,10 @@ import { RouterLink } from "vue-router";
 .enlace-detalle:hover {
   background: #e8d7db;
   color: #6f1526;
+}
+
+.sin-resultados {
+  margin: 0.95rem 0 0;
 }
 
 @media (min-width: 768px) {
