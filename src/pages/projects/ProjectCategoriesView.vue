@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Card } from "@/components/ui/card";
 import { ArrowRight, Layers3 } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
@@ -26,7 +27,7 @@ const categorias = [
     <h2 class="titulo-editorial">Categorías de proyectos</h2>
 
     <div class="categorias-grid">
-      <article v-for="categoria in categorias" :key="categoria.id" class="categoria-card">
+      <Card v-for="categoria in categorias" :key="categoria.id" class="categoria-card">
         <div class="card-cabecera">
           <Layers3 :size="18" />
           <h3>{{ categoria.titulo }}</h3>
@@ -36,7 +37,7 @@ const categorias = [
           Explorar
           <ArrowRight :size="18" />
         </RouterLink>
-      </article>
+      </Card>
     </div>
   </section>
 </template>
@@ -61,15 +62,17 @@ const categorias = [
 }
 
 .categoria-card {
-  border-radius: 16px;
-  padding: 1rem;
-  background: #fffafb;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.categoria-card:hover {
+  transform: translateY(-3px);
   box-shadow:
-    0 8px 20px rgba(111, 21, 38, 0.08),
-    0 2px 6px rgba(111, 21, 38, 0.08);
+    0 14px 28px rgba(111, 21, 38, 0.12),
+    0 4px 10px rgba(111, 21, 38, 0.1);
 }
 
 .card-cabecera {

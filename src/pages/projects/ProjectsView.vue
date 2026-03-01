@@ -1,4 +1,5 @@
 ﻿<script setup lang="ts">
+import { Card } from "@/components/ui/card";
 import { CalendarDays, FolderKanban, MoveRight } from "lucide-vue-next";
 import { projects as proyectos } from "@/data/projects";
 import { RouterLink } from "vue-router";
@@ -14,7 +15,7 @@ import { RouterLink } from "vue-router";
     </div>
 
     <div class="projects-grid">
-      <article v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
+      <Card v-for="proyecto in proyectos" :key="proyecto.id" class="project-card">
         <div class="card-cabecera">
           <span class="icono-cabecera"><FolderKanban :size="18" /></span>
           <h3>{{ proyecto.title }}</h3>
@@ -28,7 +29,7 @@ import { RouterLink } from "vue-router";
           Ver detalle
           <MoveRight :size="18" />
         </RouterLink>
-      </article>
+      </Card>
     </div>
   </section>
 </template>
@@ -80,15 +81,9 @@ import { RouterLink } from "vue-router";
 }
 
 .project-card {
-  border-radius: 16px;
-  padding: 1rem;
-  background: #fffafb;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  box-shadow:
-    0 8px 20px rgba(111, 21, 38, 0.08),
-    0 2px 6px rgba(111, 21, 38, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
