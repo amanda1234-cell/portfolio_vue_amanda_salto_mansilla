@@ -1,49 +1,43 @@
 <script setup lang="ts">
-import { Card } from "@/components/ui/card";
-import { ArrowRight, Layers3 } from "lucide-vue-next";
+import { ArrowRight } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
 const categorias = [
-  {
-    id: "branding",
-    titulo: "Branding",
-    descripcion: "Identidad visual, naming, tono de marca y piezas clave.",
-  },
-  {
-    id: "logotipos",
-    titulo: "Logotipos",
-    descripcion: "Sistemas de logotipo, versiones y aplicaciones base.",
-  },
-  {
-    id: "social-media",
-    titulo: "Social Media",
-    descripcion: "Creatividades para redes, campañas y contenido visual.",
-  },
+  { id: "branding", titulo: "BRANDING & LOGO" },
+  { id: "social-media", titulo: "SOCIAL MEDIA DESIGN" },
+  { id: "logotipos", titulo: "CLIENT TESTIMONIALS" },
 ];
 </script>
 
 <template>
-  <section class="categorias">
-    <h2 class="titulo-editorial">Categorías de proyectos</h2>
+  <section class="indice">
+    <p class="titulo-editorial">Indice de contenido</p>
 
-    <div class="categorias-grid">
-      <Card v-for="categoria in categorias" :key="categoria.id" class="categoria-card">
-        <div class="card-cabecera">
-          <Layers3 :size="18" />
-          <h3>{{ categoria.titulo }}</h3>
+    <div class="lienzo-indice">
+      <div class="bloque-centro">
+        <div class="marca-indice">
+          <p class="firma"><span class="letra-t">T</span><span class="resto-firma">abla</span></p>
+          <p class="subfirma">de contenido</p>
         </div>
-        <p>{{ categoria.descripcion }}</p>
-        <RouterLink :to="`/portfolio/proyectos?categoria=${categoria.id}`" class="enlace-categoria">
-          Explorar
-          <ArrowRight :size="18" />
-        </RouterLink>
-      </Card>
+
+        <nav class="lista-indice" aria-label="Categorias de proyectos">
+          <RouterLink
+            v-for="categoria in categorias"
+            :key="categoria.id"
+            :to="`/portfolio/proyectos?categoria=${categoria.id}`"
+            class="linea-indice"
+          >
+            <span>{{ categoria.titulo }}</span>
+            <ArrowRight :size="18" />
+          </RouterLink>
+        </nav>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.categorias {
+.indice {
   color: #5a1a27;
 }
 
@@ -55,65 +49,94 @@ const categorias = [
   opacity: 0.8;
 }
 
-.categorias-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.categoria-card {
+.lienzo-indice {
+  min-height: min(82svh, 760px);
+  border-radius: 24px;
+  background: #f4f1f2;
   display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.categoria-card:hover {
-  transform: translateY(-3px);
-  box-shadow:
-    0 14px 28px rgba(111, 21, 38, 0.12),
-    0 4px 10px rgba(111, 21, 38, 0.1);
-}
-
-.card-cabecera {
-  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.card-cabecera h3 {
-  margin: 0;
-  font-weight: 700;
+.bloque-centro {
+  width: min(92%, 1080px);
 }
 
-.categoria-card p {
-  margin: 0;
-  line-height: 1.4;
-}
-
-.enlace-categoria {
-  margin-top: auto;
-  width: fit-content;
-  border-radius: 999px;
-  background: #efe2e5;
-  color: #5a1a27;
-  text-decoration: none;
-  padding: 0.45rem 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.enlace-categoria:hover {
-  background: #e8d7db;
+.marca-indice {
+  margin-left: auto;
+  margin-right: clamp(0.5rem, 4vw, 2rem);
+  margin-bottom: clamp(0.75rem, 2.5vh, 1.35rem);
+  text-align: right;
   color: #6f1526;
 }
 
-@media (min-width: 860px) {
-  .categorias-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+.firma {
+  margin: 0;
+  font-size: clamp(2.4rem, 8vw, 5.1rem);
+  line-height: 0.9;
+}
+
+.letra-t {
+  font-family: "PinyonScriptLocal", "Pinyon Script", "Times New Roman", serif;
+  display: inline-block;
+  font-size: 1.95em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.8;
+  transform: translateY(0.01em);
+}
+
+.resto-firma {
+  font-family: "MontserratLocal", "Montserrat", sans-serif;
+  font-weight: 500;
+  margin-left: 0.13em;
+}
+
+.subfirma {
+  margin: -0.18rem 0 0;
+  font-size: clamp(0.82rem, 2.05vw, 1.35rem);
+  font-weight: 500;
+  font-family: "MontserratLocal", "Montserrat", sans-serif;
+}
+
+.lista-indice {
+  border-top: 1px solid rgba(111, 21, 38, 0.25);
+  border-bottom: 1px solid rgba(111, 21, 38, 0.25);
+}
+
+.linea-indice {
+  text-decoration: none;
+  color: #6f1526;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  border-top: 1px solid rgba(111, 21, 38, 0.25);
+  padding: 0.55rem 1rem;
+  font-size: clamp(1.05rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.linea-indice:first-child {
+  border-top: 0;
+}
+
+.linea-indice:hover {
+  background: #efe2e5;
+  color: #5a1a27;
+}
+
+@media (min-width: 900px) {
+  .lienzo-indice {
+    min-height: min(88svh, 980px);
+  }
+
+  .linea-indice {
+    padding: 0.62rem 1.45rem;
   }
 }
 </style>
