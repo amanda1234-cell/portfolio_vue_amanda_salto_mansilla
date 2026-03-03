@@ -39,7 +39,7 @@ const proyectosFiltrados = computed(() =>
       <h2 class="titulo-editorial">Proyectos</h2>
       <div class="acciones-encabezado">
         <RouterLink to="/portfolio/proyectos/categorias" class="boton-categorias">
-          Ver categorias
+          Ver categorías
         </RouterLink>
         <RouterLink v-if="categoriaActiva" to="/portfolio/proyectos" class="boton-categorias">
           Ver todos
@@ -58,7 +58,7 @@ const proyectosFiltrados = computed(() =>
 
         <p class="card-texto">{{ proyecto.description }}</p>
 
-        <p class="meta"><CalendarDays :size="18" />Ano: {{ proyecto.year }}</p>
+        <p class="meta"><CalendarDays :size="18" />Año: {{ proyecto.year }}</p>
 
         <RouterLink :to="`/portfolio/proyectos/${proyecto.id}`" class="enlace-detalle">
           Ver detalle
@@ -68,7 +68,7 @@ const proyectosFiltrados = computed(() =>
     </div>
 
     <p v-if="proyectosFiltrados.length === 0" class="sin-resultados">
-      No hay proyectos en esta categoria todavia.
+      No hay proyectos en esta categoría todavía.
     </p>
   </section>
 </template>
