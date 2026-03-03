@@ -45,7 +45,7 @@ const irASeccion = (id: string) => {
 
     <article id="bloque-experiencia" class="skills">
       <div class="skills-encabezado titulo-derecha">
-        <h3>EXPERIENCIA Y SKILLS</h3>
+        <h3>EXPERIENCIAS,<br />Y SKILLS</h3>
         <p>
           Siempre estoy explorando nuevas herramientas para mejorar procesos y
           elevar la calidad visual de cada proyecto.
@@ -174,7 +174,9 @@ const irASeccion = (id: string) => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-end;
   background: #fffafb;
+  text-align: right;
 }
 
 .etiqueta {
@@ -187,13 +189,15 @@ const irASeccion = (id: string) => {
 
 .texto-who h2 {
   margin: 0.25rem 0 1rem;
-  font-size: clamp(1.9rem, 8.5vw, 4.2rem);
+  font-size: clamp(1.7rem, 7.8vw, 3.7rem);
   line-height: 0.9;
+  text-align: right;
 }
 
 .bloque-descripcion {
   margin-top: auto;
   padding-top: clamp(2.6rem, 9vh, 6rem);
+  margin-left: auto;
 }
 
 .descripcion-grande {
@@ -257,7 +261,7 @@ const irASeccion = (id: string) => {
 
 .skills-encabezado h3 {
   margin: 0;
-  font-size: clamp(2.1rem, 10vw, 5rem);
+  font-size: clamp(1.8rem, 8.8vw, 4.3rem);
   line-height: 0.9;
   color: #6f1526;
 }
@@ -266,6 +270,16 @@ const irASeccion = (id: string) => {
   margin: 0;
   font-size: 0.98rem;
   max-width: 52ch;
+}
+
+.titulo-derecha p {
+  text-align: right;
+  margin-left: auto;
+}
+
+.titulo-izquierda p {
+  text-align: left;
+  margin-right: auto;
 }
 
 .skills-grid {
