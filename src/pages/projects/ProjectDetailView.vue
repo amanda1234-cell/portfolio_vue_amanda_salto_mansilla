@@ -1,14 +1,59 @@
 <script setup lang="ts">
-const huecos = [1, 2, 3];
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-vue-next";
+import { computed } from "vue";
+import { RouterLink } from "vue-router";
+import { useRoute } from "vue-router";
+import { projects as proyectos } from "@/data/projects";
+
+const ruta = useRoute();
+const idProyecto = computed(() => String(ruta.params.id ?? ""));
+const proyecto = computed(() => proyectos.find((item) => item.id === idProyecto.value));
+
+const slots = computed(() => {
+  if (proyecto.value?.gallery?.length) {
+    return proyecto.value.gallery.slice(0, 3);
+  }
+  return [{}, {}, {}];
+});
 </script>
 
 <template>
   <section class="detalle-galeria">
-    <article v-for="hueco in huecos" :key="hueco" class="recuadro-foto">
+    <RouterLink to="/portfolio/proyectos" class="volver">
+      <Button class="boton-volver">
+        <ArrowLeft :size="18" />
+        Volver a proyectos
+      </Button>
+    </RouterLink>
+
+    <article v-for="(slot, indice) in slots" :key="`${idProyecto}-${indice}`" class="recuadro-foto">
       <div class="marco-interno">
-        <span>INSERTAR FOTO {{ hueco }}</span>
+        <template v-if="'src' in slot && slot.src">
+          <iframe
+            v-if="slot.type === 'pdf'"
+            :src="slot.src"
+            title="Portfolio campaign"
+            class="media-insertada"
+          />
+          <img
+            v-else
+            :src="slot.src"
+            :alt="`Pieza ${indice + 1} del proyecto`"
+            class="media-insertada"
+            :style="{ objectPosition: slot.objectPosition ?? 'center center' }"
+          />
+        </template>
+        <span v-else>INSERTAR FOTO {{ indice + 1 }}</span>
       </div>
     </article>
+
+    <RouterLink to="/portfolio/proyectos" class="volver">
+      <Button class="boton-volver">
+        <ArrowLeft :size="18" />
+        Volver a proyectos
+      </Button>
+    </RouterLink>
   </section>
 </template>
 
@@ -18,6 +63,21 @@ const huecos = [1, 2, 3];
   flex-direction: column;
   gap: 1rem;
   color: #5a1a27;
+}
+
+.volver {
+  text-decoration: none;
+}
+
+.boton-volver {
+  border-radius: 12px;
+  border: 1px solid #dcc5cb;
+  background: #fffafb;
+  color: #5a1a27;
+}
+
+.boton-volver:hover {
+  background: #efe2e5;
 }
 
 .recuadro-foto {
@@ -40,6 +100,14 @@ const huecos = [1, 2, 3];
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.media-insertada {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
 }
 
 .recuadro-foto span {

@@ -1,12 +1,18 @@
 export type Project = {
   id: string;
-  category: "branding" | "logotipos" | "social-media";
+  category: "branding" | "campaign-designs" | "logotipos" | "social-media";
   title: string;
   description: string;
   year: string;
   technologies: string[];
   image: string;
   liveUrl: string;
+  mupiImage?: string;
+  gallery?: Array<{
+    src: string;
+    type?: "image" | "pdf";
+    objectPosition?: string;
+  }>;
 };
 
 export const projects: Project[] = [
@@ -20,6 +26,21 @@ export const projects: Project[] = [
     technologies: ["Figma", "Illustrator", "Photoshop"],
     image: "https://via.placeholder.com/960x540?text=Branding+Cafe",
     liveUrl: "https://example.com/branding-cafe",
+  },
+  {
+    id: "campaign-lo-que-nos-mueve",
+    category: "campaign-designs",
+    title: "Lo que nos mueve",
+    description:
+      "Campana visual enfocada en comunidad, intereses compartidos y accion social.",
+    year: "2025",
+    technologies: ["Illustrator", "Photoshop"],
+    image: "/proyectos/campana/lo-que-nos-mueve-portfolio.pdf",
+    mupiImage: "/proyectos/campana/mupi.jpg",
+    gallery: [
+      { src: "/proyectos/campana/captura-1-2.png", type: "image", objectPosition: "center top" },
+    ],
+    liveUrl: "https://example.com/lo-que-nos-mueve",
   },
   {
     id: "web-evento-cultural",
