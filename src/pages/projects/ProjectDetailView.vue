@@ -60,6 +60,8 @@ const proyecto = computed(() => proyectos.find((item) => item.id === idProyecto.
   min-height: min(82svh, 760px);
   display: flex;
   flex-direction: column;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .detalle-card {
@@ -111,6 +113,11 @@ const proyecto = computed(() => proyectos.find((item) => item.id === idProyecto.
   text-decoration: none;
 }
 
+.acciones :deep(button) {
+  width: 100%;
+  justify-content: center;
+}
+
 .boton-accion {
   border-radius: 12px;
   border: 0;
@@ -144,6 +151,10 @@ const proyecto = computed(() => proyectos.find((item) => item.id === idProyecto.
 
   .titulo-proyecto {
     font-size: 1.85rem;
+  }
+
+  .acciones :deep(button) {
+    width: auto;
   }
 }
 </style>
