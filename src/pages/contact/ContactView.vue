@@ -1,12 +1,18 @@
 ﻿<script setup lang="ts">
 import { Button } from "@/components/ui/button";
+import emailjs from "@emailjs/browser";
 import { Mail, MessageSquareText, UserRound } from "lucide-vue-next";
 import { reactive, ref } from "vue";
 
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const nombre = ref("");
 const correo = ref("");
 const mensaje = ref("");
 const enviado = ref(false);
+const enviando = ref(false);
+const errorEnvio = ref("");
 const errores = reactive({
   nombre: "",
   correo: "",
@@ -28,15 +34,46 @@ const validarFormulario = () => {
   return !errores.nombre && !errores.correo && !errores.mensaje;
 };
 
-const enviarFormulario = () => {
+const enviarFormulario = async () => {
   enviado.value = false;
+  errorEnvio.value = "";
   if (!validarFormulario()) {
     return;
   }
-  enviado.value = true;
-  nombre.value = "";
-  correo.value = "";
-  mensaje.value = "";
+
+  try {
+    enviando.value = true;
+
+    if (!serviceId || !templateId || !publicKey) {
+      throw new Error("Falta configurar EmailJS.");
+    }
+
+    await emailjs.send(
+      serviceId,
+      templateId,
+      {
+        nombre: nombre.value,
+        correo: correo.value,
+        mensaje: mensaje.value,
+        from_name: nombre.value,
+        from_email: correo.value,
+        reply_to: correo.value,
+        message: mensaje.value,
+      },
+      {
+        publicKey,
+      },
+    );
+
+    enviado.value = true;
+    nombre.value = "";
+    correo.value = "";
+    mensaje.value = "";
+  } catch {
+    errorEnvio.value = "No se pudo enviar el mensaje. Inténtalo de nuevo.";
+  } finally {
+    enviando.value = false;
+  }
 };
 </script>
 
@@ -62,12 +99,14 @@ const enviarFormulario = () => {
       </label>
       <Button
         type="submit"
+        :disabled="enviando"
         class="w-full rounded-xl border-0 bg-[#6f1526] text-white hover:bg-[#58101e] sm:w-fit"
       >
-        Enviar
+        {{ enviando ? "Enviando..." : "Enviar" }}
       </Button>
     </form>
     <p v-if="enviado" class="success">Mensaje enviado correctamente.</p>
+    <p v-if="errorEnvio" class="error-envio">{{ errorEnvio }}</p>
   </section>
 </template>
 
@@ -132,6 +171,11 @@ textarea {
 
 .success {
   color: #6f1526;
+}
+
+.error-envio {
+  margin: 0;
+  color: #8e263a;
 }
 
 @media (min-width: 640px) {
