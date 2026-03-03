@@ -47,7 +47,7 @@ const irASeccion = (id: string) => {
       <div class="skills-encabezado titulo-derecha">
         <h3>EXPERIENCIAS,<br />Y SKILLS</h3>
         <p>
-          Siempre estoy explorando nuevas herramientas para mejorar procesos y
+          Explorando constantemente nuevas herramientas para mejorar procesos y
           elevar la calidad visual de cada proyecto.
         </p>
       </div>
@@ -55,16 +55,15 @@ const irASeccion = (id: string) => {
       <div class="skills-grid">
         <section class="skills-columna">
           <h4>Software skills</h4>
-          <p>Illustrator, Lightroom, Figma, Canva, Notion, Premiere.</p>
+          <p>Por rellenar</p>
 
           <h4>Creative skills</h4>
           <p>
-            Branding, diseño editorial, diseño para redes sociales, dirección
-            de arte, fotografía y edición visual.
+            Por rellenar
           </p>
 
           <h4>Intereses</h4>
-          <p>Arte digital, ilustración, fotografía, moda y música.</p>
+          <p>Por rellenar</p>
         </section>
 
         <section class="skills-columna">
