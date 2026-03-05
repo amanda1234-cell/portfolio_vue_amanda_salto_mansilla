@@ -7,7 +7,12 @@ import { RouterLink, useRoute } from "vue-router";
 
 const route = useRoute();
 
-const categoriasValidas = ["branding", "logotipos", "social-media"] as const;
+const categoriasValidas = [
+  "branding",
+  "campaign-designs",
+  "ilustracion-digital",
+  "ilustracion-grafica",
+] as const;
 type Categoria = (typeof categoriasValidas)[number];
 
 const categoriaActiva = computed<Categoria | null>(() => {
@@ -18,9 +23,10 @@ const categoriaActiva = computed<Categoria | null>(() => {
 
 const textoCategoriaActiva = computed(() => {
   const etiquetas: Record<Categoria, string> = {
-    branding: "Branding",
-    logotipos: "Logotipos",
-    "social-media": "Social Media",
+    branding: "Logo y branding",
+    "campaign-designs": "Campañas",
+    "ilustracion-digital": "Ilustracion digital",
+    "ilustracion-grafica": "Ilustracion grafica",
   };
   return categoriaActiva.value ? etiquetas[categoriaActiva.value] : "";
 });
@@ -34,21 +40,21 @@ const proyectosFiltrados = computed(() =>
 const logoHerramienta = (herramienta: string) => {
   const clave = herramienta.toLowerCase();
   const mapa: Record<string, { etiqueta: string; fondo: string; color: string }> = {
-    illustrator: { etiqueta: "Ai", fondo: "#2e1100", color: "#ff9a00" },
-    photoshop: { etiqueta: "Ps", fondo: "#001d35", color: "#31a8ff" },
-    figma: { etiqueta: "Fg", fondo: "#1f1f1f", color: "#ffffff" },
-    canva: { etiqueta: "Cv", fondo: "#113b4a", color: "#7de2fc" },
-    vue: { etiqueta: "Vu", fondo: "#1e2f2a", color: "#42b883" },
-    typescript: { etiqueta: "Ts", fondo: "#10243f", color: "#58a6ff" },
-    tailwind: { etiqueta: "Tw", fondo: "#0f2e36", color: "#38bdf8" },
-    pinia: { etiqueta: "Pi", fondo: "#2f2510", color: "#ffd859" },
+    illustrator: { etiqueta: "Ai", fondo: "#efe2e5", color: "#730E0E" },
+    photoshop: { etiqueta: "Ps", fondo: "#efe2e5", color: "#730E0E" },
+    figma: { etiqueta: "Fg", fondo: "#efe2e5", color: "#730E0E" },
+    canva: { etiqueta: "Cv", fondo: "#efe2e5", color: "#730E0E" },
+    vue: { etiqueta: "Vu", fondo: "#efe2e5", color: "#730E0E" },
+    typescript: { etiqueta: "Ts", fondo: "#efe2e5", color: "#730E0E" },
+    tailwind: { etiqueta: "Tw", fondo: "#efe2e5", color: "#730E0E" },
+    pinia: { etiqueta: "Pi", fondo: "#efe2e5", color: "#730E0E" },
   };
 
   return (
     mapa[clave] ?? {
       etiqueta: herramienta.slice(0, 2).toUpperCase(),
-      fondo: "#f4e9ec",
-      color: "#6f1526",
+      fondo: "#efe2e5",
+      color: "#730E0E",
     }
   );
 };
@@ -79,7 +85,9 @@ const logoHerramienta = (herramienta: string) => {
         <div class="info-proyecto">
           <p class="numero-proyecto">Proyecto {{ String(indice + 1).padStart(2, "0") }}</p>
           <h3 class="titulo-proyecto">{{ proyecto.title }}</h3>
-          <p class="descripcion-proyecto">{{ proyecto.description }}</p>
+          <div class="descripcion-bloque">
+            <p class="descripcion-proyecto">{{ proyecto.description }}</p>
+          </div>
 
           <p class="meta">
             <CalendarDays :size="18" />
@@ -113,8 +121,16 @@ const logoHerramienta = (herramienta: string) => {
         </div>
 
         <div class="placeholder-visual" role="img" aria-label="Espacio reservado para imagen o logo">
-          <Image :size="22" />
-          <span>(insertar imagen o logo)</span>
+          <img
+            v-if="proyecto.image && !proyecto.image.endsWith('.pdf')"
+            :src="proyecto.image"
+            :alt="`Visual del proyecto ${proyecto.title}`"
+            class="imagen-preview"
+          />
+          <template v-else>
+            <Image :size="22" />
+            <span>(insertar imagen o logo)</span>
+          </template>
         </div>
       </Card>
     </div>
@@ -127,7 +143,7 @@ const logoHerramienta = (herramienta: string) => {
 
 <style scoped>
 .proyectos {
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 .titulo-editorial {
@@ -155,7 +171,7 @@ const logoHerramienta = (herramienta: string) => {
 .boton-categorias {
   border-radius: 999px;
   background: #efe2e5;
-  color: #5a1a27;
+  color: #730e0e;
   text-decoration: none;
   padding: 0.38rem 0.85rem;
   font-size: 0.82rem;
@@ -165,7 +181,7 @@ const logoHerramienta = (herramienta: string) => {
 
 .boton-categorias:hover {
   background: #e8d7db;
-  color: #6f1526;
+  color: #730e0e;
 }
 
 .filtro-activo {
@@ -183,8 +199,12 @@ const logoHerramienta = (herramienta: string) => {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  background: #f6f1f2;
-  min-height: min(82svh, 760px);
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  min-height: 88svh;
 }
 
 .info-proyecto {
@@ -210,6 +230,10 @@ const logoHerramienta = (herramienta: string) => {
   margin: 0;
   max-width: 42ch;
   line-height: 1.4;
+}
+
+.descripcion-bloque {
+  display: block;
 }
 
 .meta {
@@ -242,7 +266,7 @@ const logoHerramienta = (herramienta: string) => {
 
 .herramientas li {
   border-radius: 0.4rem;
-  border: 1px solid rgba(220, 197, 203, 0.42);
+  border: 1px solid rgba(115, 14, 14, 0.45);
   width: 2.05rem;
   height: 2.05rem;
   font-size: 1rem;
@@ -256,26 +280,27 @@ const logoHerramienta = (herramienta: string) => {
   margin-top: 0.55rem;
   width: fit-content;
   text-decoration: none;
-  color: #5a1a27;
+  color: #730e0e;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  border-bottom: 1px solid rgba(90, 26, 39, 0.35);
+  border-bottom: 1px solid rgba(115, 14, 14, 0.45);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .enlace-detalle:hover {
-  color: #6f1526;
-  border-color: #6f1526;
+  color: #730e0e;
+  border-color: #730e0e;
 }
 
 .placeholder-visual {
-  min-height: clamp(180px, 34vw, 360px);
+  min-height: 0;
+  height: 65%;
+   width: 80%;
   border-radius: 14px;
-  border: 1px dashed rgba(111, 21, 38, 0.36);
-  background: #fffafb;
-  color: #6f1526;
+  background: transparent;
+  color: #730e0e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,6 +309,16 @@ const logoHerramienta = (herramienta: string) => {
   letter-spacing: 0.08em;
   font-size: 0.72rem;
   font-weight: 600;
+  overflow: hidden;     
+  max-width: 3000px;
+
+}
+
+.imagen-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
 }
 
 .sin-resultados {
@@ -295,12 +330,11 @@ const logoHerramienta = (herramienta: string) => {
     grid-template-columns: minmax(280px, 0.9fr) minmax(380px, 1.3fr);
     gap: 1.3rem;
     align-items: stretch;
+    min-height: 96svh;
   }
-}
 
-@media (min-width: 768px) {
-  .proyecto-editorial {
-    min-height: min(88svh, 900px);
+  .placeholder-visual {
+    min-height: 0;
   }
 }
 </style>

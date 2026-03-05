@@ -1,6 +1,10 @@
 export type Project = {
   id: string;
-  category: "branding" | "campaign-designs" | "logotipos" | "social-media";
+  category:
+    | "branding"
+    | "campaign-designs"
+    | "ilustracion-digital"
+    | "ilustracion-grafica";
   title: string;
   description: string;
   year: string;
@@ -35,16 +39,17 @@ export const projects: Project[] = [
       "Campana visual enfocada en comunidad, intereses compartidos y accion social.",
     year: "2025",
     technologies: ["Illustrator", "Photoshop"],
-    image: "/proyectos/campana/lo-que-nos-mueve-portfolio.pdf",
+    image: "/proyectos/campana/mupi.jpg",
     mupiImage: "/proyectos/campana/mupi.jpg",
     gallery: [
       { src: "/proyectos/campana/captura-1-2.png", type: "image", objectPosition: "center top" },
+      { src: "/proyectos/campana/lo-que-nos-mueve-portfolio.pdf#view=FitH", type: "pdf" },
     ],
     liveUrl: "https://example.com/lo-que-nos-mueve",
   },
   {
     id: "web-evento-cultural",
-    category: "social-media",
+    category: "ilustracion-digital",
     title: "Web de evento cultural",
     description:
       "Landing page responsive con agenda, ponentes y formulario de inscripcion.",
@@ -55,7 +60,7 @@ export const projects: Project[] = [
   },
   {
     id: "app-recetas",
-    category: "logotipos",
+    category: "ilustracion-grafica",
     title: "App de recetas interactivas",
     description:
       "Proyecto academico con filtros por ingredientes y guardado de favoritos.",

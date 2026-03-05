@@ -5,11 +5,11 @@ import { RouterLink } from "vue-router";
 
 <template>
   <section
-    class="relative mx-auto mt-3 flex min-h-[88svh] w-full max-w-[1320px] flex-col items-center justify-center overflow-hidden rounded-3xl bg-[#f7f1f2] px-4 py-8 pb-20 text-center sm:px-6 md:min-h-[96svh] md:px-12 md:py-10"
+    class="relative flex min-h-[88svh] w-full flex-col items-center justify-center overflow-hidden bg-white px-4 py-8 pb-20 text-center sm:px-6 md:min-h-[96svh] md:px-12 md:py-10"
   >
     <div class="relative z-10">
       <div class="titulo-wrap">
-        <h1 class="portfolio-title text-[15vw] leading-[0.9] tracking-tight text-[#6f1526] sm:text-[5.2rem] md:text-[7rem]">
+        <h1 class="portfolio-title text-[15vw] leading-[0.9] tracking-tight text-[#730E0E] sm:text-[5.2rem] md:text-[7rem]">
           <span class="letra-p">P</span><span class="resto">ortfolio</span>
         </h1>
         <p class="subtitulo-profesion">Diseñadora gráfica y Brand Designer</p>
@@ -18,21 +18,21 @@ import { RouterLink } from "vue-router";
       <div class="mt-10 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center md:mt-[5.25rem]">
         <RouterLink
           to="/portfolio/proyectos/categorias"
-          class="w-full rounded-full bg-[#6f1526] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#58101e] sm:w-auto inline-flex items-center justify-center gap-2"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#730E0E] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#5f0c0c] sm:w-auto"
         >
           <BriefcaseBusiness :size="18" />
           Ver proyectos
         </RouterLink>
         <RouterLink
           to="/portfolio/sobre-mi"
-          class="w-full rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#e8d7db] sm:w-auto inline-flex items-center justify-center gap-2"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#730E0E] transition hover:bg-[#e8d7db] sm:w-auto"
         >
           <UserRound :size="18" />
           Sobre mí
         </RouterLink>
         <RouterLink
           to="/portfolio/contacto"
-          class="w-full rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#5a1a27] transition hover:bg-[#e8d7db] sm:w-auto inline-flex items-center justify-center gap-2"
+          class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#efe2e5] px-5 py-2 text-sm font-semibold text-[#730E0E] transition hover:bg-[#e8d7db] sm:w-auto"
         >
           <Mail :size="18" />
           Contacto
@@ -40,7 +40,7 @@ import { RouterLink } from "vue-router";
       </div>
     </div>
 
-    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-[#efe2e5] px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#6f1526]">(insertar logo iniciales)</p>
+    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-[#efe2e5] px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#730E0E]">(insertar logo iniciales)</p>
   </section>
 </template>
 
@@ -76,7 +76,7 @@ import { RouterLink } from "vue-router";
   margin: 0;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #6f1526;
+  color: #730e0e;
   margin-top: -0.55rem;
 }
 </style>

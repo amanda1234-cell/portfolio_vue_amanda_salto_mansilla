@@ -138,6 +138,7 @@
   }
   body {
     font-family: "MontserratLocal", "Montserrat", sans-serif;
-    @apply bg-background text-foreground;
+    background: #fff;
+    color: #730e0e;
   }
 }

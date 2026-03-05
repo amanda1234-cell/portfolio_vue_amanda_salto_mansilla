@@ -62,7 +62,7 @@ const slots = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 .volver {
@@ -73,18 +73,19 @@ const slots = computed(() => {
   border-radius: 12px;
   border: 1px solid #dcc5cb;
   background: #fffafb;
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 .boton-volver:hover {
   background: #efe2e5;
+  color: #730e0e;
 }
 
 .recuadro-foto {
   min-height: min(88svh, 900px);
   width: 100%;
-  border-radius: 24px;
-  background: #f7f1f2;
+  border-radius: 0;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,9 +95,9 @@ const slots = computed(() => {
 .marco-interno {
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  border: 1px dashed rgba(111, 21, 38, 0.35);
-  background: #fffafb;
+  border-radius: 0;
+  border: 1px dashed rgba(115, 14, 14, 0.45);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +115,7 @@ const slots = computed(() => {
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #6f1526;
+  color: #730e0e;
 }
 
 @media (max-width: 767px) {

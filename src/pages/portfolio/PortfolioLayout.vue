@@ -26,9 +26,8 @@ import { RouterLink, RouterView } from "vue-router";
 <style scoped>
 .portfolio-layout {
   padding: 1rem;
-  max-width: 1320px;
-  margin: 0 auto;
-  color: #5a1a27;
+  color: #730e0e;
+  width: 100%;
 }
 
 .portfolio-header {
@@ -54,13 +53,13 @@ import { RouterLink, RouterView } from "vue-router";
   height: 34px;
   background: #efe2e5;
   border-radius: 999px;
-  color: #5a1a27;
+  color: #730e0e;
   transition: all 0.2s ease;
 }
 
 .home-link:hover {
-  background: #efe2e5;
-  color: #6f1526;
+  background: #e8d7db;
+  color: #730e0e;
 }
 
 .site-title {
@@ -81,7 +80,7 @@ import { RouterLink, RouterView } from "vue-router";
 }
 
 .portfolio-nav a.router-link-active {
-  color: #6f1526;
+  color: #730e0e;
 }
 
 @media (min-width: 768px) {

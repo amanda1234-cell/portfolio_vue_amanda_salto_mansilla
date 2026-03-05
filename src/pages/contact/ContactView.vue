@@ -100,7 +100,7 @@ const enviarFormulario = async () => {
       <Button
         type="submit"
         :disabled="enviando"
-        class="w-full rounded-xl border-0 bg-[#6f1526] text-white hover:bg-[#58101e] sm:w-fit"
+        class="w-full rounded-xl border-0 bg-[#730E0E] text-white hover:bg-[#5f0c0c] sm:w-fit"
       >
         {{ enviando ? "Enviando..." : "Enviar" }}
       </Button>
@@ -115,10 +115,10 @@ const enviarFormulario = async () => {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  background: #f7f1f2;
-  border-radius: 16px;
+  background: transparent;
+  border-radius: 0;
   padding: 0.85rem;
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 .contact-form {
@@ -156,7 +156,8 @@ textarea {
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
   background: #fffafb;
-  color: #5a1a27;
+  color: #730e0e;
+  border: 1px solid #730e0e;
 }
 
 textarea {
@@ -165,17 +166,17 @@ textarea {
 }
 
 .error {
-  color: #8e263a;
+  color: #730e0e;
   font-size: 0.85rem;
 }
 
 .success {
-  color: #6f1526;
+  color: #730e0e;
 }
 
 .error-envio {
   margin: 0;
-  color: #8e263a;
+  color: #730e0e;
 }
 
 @media (min-width: 640px) {

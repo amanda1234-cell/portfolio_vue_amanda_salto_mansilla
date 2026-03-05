@@ -3,9 +3,10 @@ import { ArrowRight } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
 const categorias = [
-  { id: "branding", titulo: "BRANDING & LOGO" },
-  { id: "social-media", titulo: "SOCIAL MEDIA DESIGN" },
-  { id: "logotipos", titulo: "CLIENT TESTIMONIALS" },
+  { id: "branding", titulo: "LOGO Y BRANDING" },
+  { id: "campaign-designs", titulo: "CAMPAÑAS" },
+  { id: "ilustracion-digital", titulo: "ILUSTRACION DIGITAL" },
+  { id: "ilustracion-grafica", titulo: "ILUSTRACION GRAFICA" },
 ];
 </script>
 
@@ -38,7 +39,7 @@ const categorias = [
 
 <style scoped>
 .indice {
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 .titulo-editorial {
@@ -51,8 +52,8 @@ const categorias = [
 
 .lienzo-indice {
   min-height: min(82svh, 760px);
-  border-radius: 24px;
-  background: #f4f1f2;
+  border-radius: 0;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,6 +62,7 @@ const categorias = [
 
 .bloque-centro {
   width: min(92%, 1080px);
+  margin: auto 0;
 }
 
 .marca-indice {
@@ -68,7 +70,7 @@ const categorias = [
   margin-right: clamp(0.5rem, 4vw, 2rem);
   margin-bottom: clamp(0.75rem, 2.5vh, 1.35rem);
   text-align: right;
-  color: #6f1526;
+  color: #730e0e;
 }
 
 .firma {
@@ -101,18 +103,18 @@ const categorias = [
 }
 
 .lista-indice {
-  border-top: 1px solid rgba(111, 21, 38, 0.25);
-  border-bottom: 1px solid rgba(111, 21, 38, 0.25);
+  border-top: 1px solid rgba(115, 14, 14, 0.45);
+  border-bottom: 1px solid rgba(115, 14, 14, 0.45);
 }
 
 .linea-indice {
   text-decoration: none;
-  color: #6f1526;
+  color: #730e0e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.65rem;
-  border-top: 1px solid rgba(111, 21, 38, 0.25);
+  border-top: 1px solid rgba(115, 14, 14, 0.45);
   padding: 0.55rem 1rem;
   font-size: clamp(1.05rem, 2.6vw, 1.85rem);
   font-weight: 700;
@@ -127,7 +129,7 @@ const categorias = [
 
 .linea-indice:hover {
   background: #efe2e5;
-  color: #5a1a27;
+  color: #730e0e;
 }
 
 @media (min-width: 900px) {
