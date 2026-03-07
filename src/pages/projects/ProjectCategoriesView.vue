@@ -48,6 +48,7 @@ const categorias = [
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.8;
+  font-weight: 700;
 }
 
 .lienzo-indice {
@@ -80,7 +81,7 @@ const categorias = [
 }
 
 .letra-t {
-  font-family: "PinyonScriptLocal", "Pinyon Script", "Times New Roman", serif;
+  font-family: "Bickham Script Pro", "PinyonScriptLocal", "Times New Roman", serif;
   display: inline-block;
   font-size: 1.95em;
   font-style: italic;
@@ -98,7 +99,7 @@ const categorias = [
 .subfirma {
   margin: -0.18rem 0 0;
   font-size: clamp(0.82rem, 2.05vw, 1.35rem);
-  font-weight: 500;
+  font-weight: 700;
   font-family: "MontserratLocal", "Montserrat", sans-serif;
 }
 
@@ -117,10 +118,15 @@ const categorias = [
   border-top: 1px solid rgba(115, 14, 14, 0.45);
   padding: 0.55rem 1rem;
   font-size: clamp(1.05rem, 2.6vw, 1.85rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: 0.01em;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.linea-indice span {
+  font-family: "MontserratLocal", "Montserrat", sans-serif;
+  font-weight: 700;
 }
 
 .linea-indice:first-child {
