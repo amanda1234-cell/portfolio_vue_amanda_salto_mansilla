@@ -22,7 +22,7 @@ const paginaAnterior = () => {
     <article v-if="paginaActual === 0" class="pagina who">
       <div class="who-contenido">
         <div class="foto-mock">
-          <img src="/perfil/quien-soy.jpeg" alt="Foto personal" class="foto-perfil" />
+          <img src="/perfil/quien-soy.png" alt="Foto personal" class="foto-perfil" />
         </div>
 
         <div class="texto-who">
