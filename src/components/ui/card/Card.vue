@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
     :as-child="asChild"
     :class="
       cn(
-        'rounded-2xl border border-[#efe2e5] bg-[#fffafb] p-4 shadow-[0_8px_20px_rgba(111,21,38,0.08),0_2px_6px_rgba(111,21,38,0.08)]',
+        'rounded-2xl border border-[#efe2e5] bg-[#ffffff] p-4 shadow-[0_8px_20px_rgba(111,21,38,0.08),0_2px_6px_rgba(111,21,38,0.08)]',
         props.class,
       )
     "

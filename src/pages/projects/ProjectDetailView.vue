@@ -72,7 +72,7 @@ const slots = computed(() => {
 .boton-volver {
   border-radius: 12px;
   border: 1px solid #dcc5cb;
-  background: #fffafb;
+  background: #ffffff;
   color: #730e0e;
 }
 

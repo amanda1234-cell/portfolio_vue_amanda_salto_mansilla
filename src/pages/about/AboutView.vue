@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { ref } from "vue";
 
@@ -55,7 +55,6 @@ const paginaAnterior = () => {
       <div class="bloque-pagina">
         <div class="encabezado-pagina izquierda">
           <h3>FORMACIÓN</h3>
-          <p>Base académica y desarrollo continuo para consolidar mi perfil creativo y profesional.</p>
         </div>
 
         <div class="grid-pagina">
@@ -93,11 +92,7 @@ const paginaAnterior = () => {
 
       <div class="bloque-pagina">
         <div class="encabezado-pagina derecha">
-          <h3>EXPERIENCIAS,<br />Y SKILLS</h3>
-          <p>
-            Explorando constantemente nuevas herramientas para mejorar procesos y elevar
-            la calidad visual de cada proyecto.
-          </p>
+          <h3>EXPERIENCIAS<br />Y SKILLS</h3>
         </div>
 
         <div class="grid-pagina">
@@ -156,7 +151,7 @@ const paginaAnterior = () => {
 
 .foto-mock {
   min-height: 220px;
-  background: #fff;
+  background: #ffffff;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -177,7 +172,7 @@ const paginaAnterior = () => {
   justify-content: flex-start;
   gap: 0.45rem;
   align-items: flex-end;
-  background: #fffafb;
+  background: #ffffff;
   text-align: right;
   overflow: hidden;
 }
@@ -192,19 +187,29 @@ const paginaAnterior = () => {
 
 .texto-who h2 {
   margin: 0.2rem 0 0.6rem;
-  font-size: clamp(1.5rem, 6.8vw, 3rem);
+  font-size: clamp(1.7rem, 7.4vw, 3.3rem);
   line-height: 0.9;
 }
 
 .bloque-descripcion {
-  margin-top: 0.25rem;
+  margin-top: auto;
+  margin-left: auto;
+  width: min(100%, 52ch);
+  align-self: flex-end;
+  text-align: right;
 }
 
 .descripcion-grande {
-  margin: 0 0 0.45rem;
-  font-size: clamp(0.74rem, 0.95vw, 0.86rem);
+  margin: 0 0 2rem;
+  font-size: clamp(0.9rem, 1.15vw, 1.08rem);
   line-height: 1.2;
-  max-width: 40ch;
+  width: 100%;
+  max-width: none;
+  margin-left: auto;
+}
+
+.descripcion-grande:last-child {
+  margin-bottom: 0rem;
 }
 
 .bloque-pagina {
@@ -252,7 +257,7 @@ const paginaAnterior = () => {
 }
 
 .columna {
-  background: #fffafb;
+  background: #ffffff;
   border-radius: 16px;
   border: 1px solid #730e0e;
   padding: 0.75rem 0.85rem;

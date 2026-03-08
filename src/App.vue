@@ -27,7 +27,16 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <main>
+  <div class="franja-contacto" aria-label="Contacto">
+    <div class="franja-pista">
+      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
+      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
+      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
+      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
+    </div>
+  </div>
+
+  <main class="contenido-app">
     <RouterView />
     <div
       class="sombra-raton"
@@ -38,6 +47,41 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.franja-contacto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(115, 14, 14, 0.22);
+  background: #fff;
+  z-index: 10000;
+}
+
+.franja-pista {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+  animation: deslizar-franja 24s linear infinite;
+}
+
+.franja-texto {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-right: 2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #730e0e;
+}
+
+.contenido-app {
+  padding-top: 24px;
+}
+
 .sombra-raton {
   position: fixed;
   top: 0;
@@ -60,6 +104,15 @@ onBeforeUnmount(() => {
 @media (hover: none), (pointer: coarse) {
   .sombra-raton {
     display: none;
+  }
+}
+
+@keyframes deslizar-franja {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 </style>

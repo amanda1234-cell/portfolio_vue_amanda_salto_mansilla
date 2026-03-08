@@ -58,7 +58,7 @@ import { RouterLink } from "vue-router";
 }
 
 .letra-p {
-  font-family: "PinyonScriptLocal", "Pinyon Script", "Times New Roman", serif;
+  font-family: "Bickham Script Pro", "PinyonScriptLocal", "Times New Roman", serif;
   display: inline-block;
   font-size: 1.95em;
   font-style: italic;

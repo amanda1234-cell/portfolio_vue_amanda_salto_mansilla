@@ -155,7 +155,7 @@ textarea {
   border: 0;
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
-  background: #fffafb;
+  background: #ffffff;
   color: #730e0e;
   border: 1px solid #730e0e;
 }
