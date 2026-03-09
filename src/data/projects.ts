@@ -1,8 +1,10 @@
-export const categoryLabels = {
+﻿export const categoryLabels = {
   branding: "Logo y branding",
-  "campaign-designs": "Campanas",
-  "ilustracion-digital": "Ilustracion digital",
-  "ilustracion-grafica": "Ilustracion grafica",
+  "campaign-designs": "Campañas",
+  "diseno-editorial": "Diseño editorial",
+  carteleria: "Cartelería",
+  "ilustracion-digital": "Ilustración digital",
+  "ilustracion-grafica": "Ilustración gráfica",
 } as const;
 
 export type ProjectCategory = keyof typeof categoryLabels;
@@ -27,26 +29,27 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "crefad",
+    category: "campaign-designs",
+    title: "CREFAD - Campaña Congreso Iberoamericano",
+    campaign: "CREFAD",
+    description:
+      "Campaña visual para el I Congreso Iberoamericano de Creación y Fabricación Digital.",
+    year: "2026",
+    technologies: ["Illustrator", "Photoshop"],
+    image: "/proyectos/crefad/poster-principal.jpg",
+    liveUrl: "https://example.com/crefad",
+  },
+  {
     id: "kaoka",
     category: "branding",
     title: "Kaoka - Identidad visual",
     description:
-      "Branding integral para marca de chocolate artesanal con sistema grafico, piezas impresas y mockups.",
+      "Branding integral para marca de chocolate artesanal con sistema gráfico, piezas impresas y mockups.",
     year: "2024",
     technologies: ["Illustrator", "Photoshop"],
     image: "/proyectos/kaoka/poster-kaoka.png",
     liveUrl: "https://example.com/kaoka",
-  },
-  {
-    id: "branding-cafe",
-    category: "branding",
-    title: "Branding para cafeteria local",
-    description:
-      "Identidad visual completa con piezas para redes sociales, cartel y carta de productos.",
-    year: "2025",
-    technologies: ["Figma", "Illustrator", "Photoshop"],
-    image: "https://via.placeholder.com/960x540?text=Branding+Cafe",
-    liveUrl: "https://example.com/branding-cafe",
   },
   {
     id: "campaign-lo-que-nos-mueve",
@@ -54,7 +57,7 @@ export const projects: Project[] = [
     title: "Lo que nos mueve",
     campaign: "Lo que nos mueve",
     description:
-      "Campana visual enfocada en comunidad, intereses compartidos y accion social.",
+      "Campaña visual enfocada en comunidad, intereses compartidos y acción social.",
     year: "2025",
     technologies: ["Illustrator", "Photoshop"],
     image: "/proyectos/campana/mupi.jpg",
@@ -70,7 +73,7 @@ export const projects: Project[] = [
     category: "ilustracion-digital",
     title: "Web de evento cultural",
     description:
-      "Landing page responsive con agenda, ponentes y formulario de inscripcion.",
+      "Landing page responsive con agenda, ponentes y formulario de inscripción.",
     year: "2025",
     technologies: ["Vue", "TypeScript", "Tailwind"],
     image: "https://via.placeholder.com/960x540?text=Web+Evento+Cultural",
@@ -81,7 +84,7 @@ export const projects: Project[] = [
     category: "ilustracion-grafica",
     title: "App de recetas interactivas",
     description:
-      "Proyecto academico con filtros por ingredientes y guardado de favoritos.",
+      "Proyecto académico con filtros por ingredientes y guardado de favoritos.",
     year: "2024",
     technologies: ["Vue", "Pinia", "CSS Grid"],
     image: "https://via.placeholder.com/960x540?text=App+Recetas",
