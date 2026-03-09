@@ -1,35 +1,25 @@
 <script setup lang="ts">
 import { Card } from "@/components/ui/card";
-import { projects as proyectos } from "@/data/projects";
+import {
+  categoryLabels,
+  type ProjectCategory,
+  projects as proyectos,
+} from "@/data/projects";
 import { ArrowRight, CalendarDays, Image, Wrench } from "lucide-vue-next";
 import { computed } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
 const route = useRoute();
 
-const categoriasValidas = [
-  "branding",
-  "campaign-designs",
-  "ilustracion-digital",
-  "ilustracion-grafica",
-] as const;
-type Categoria = (typeof categoriasValidas)[number];
-
-const categoriaActiva = computed<Categoria | null>(() => {
+const categoriaActiva = computed<ProjectCategory | null>(() => {
   const categoria = route.query.categoria;
   if (typeof categoria !== "string") return null;
-  return categoriasValidas.includes(categoria as Categoria) ? (categoria as Categoria) : null;
+  return categoria in categoryLabels ? (categoria as ProjectCategory) : null;
 });
 
-const textoCategoriaActiva = computed(() => {
-  const etiquetas: Record<Categoria, string> = {
-    branding: "Logo y branding",
-    "campaign-designs": "Campañas",
-    "ilustracion-digital": "Ilustracion digital",
-    "ilustracion-grafica": "Ilustracion grafica",
-  };
-  return categoriaActiva.value ? etiquetas[categoriaActiva.value] : "";
-});
+const textoCategoriaActiva = computed(() =>
+  categoriaActiva.value ? categoryLabels[categoriaActiva.value] : "",
+);
 
 const proyectosFiltrados = computed(() =>
   categoriaActiva.value
@@ -76,7 +66,7 @@ const logoHerramienta = (herramienta: string) => {
 
     <p v-if="categoriaActiva" class="filtro-activo">Filtrando por: {{ textoCategoriaActiva }}</p>
 
-    <div class="lista-proyectos">
+    <TransitionGroup name="fade-proyectos" tag="div" class="lista-proyectos">
       <Card
         v-for="(proyecto, indice) in proyectosFiltrados"
         :key="proyecto.id"
@@ -91,7 +81,7 @@ const logoHerramienta = (herramienta: string) => {
 
           <p class="meta">
             <CalendarDays :size="18" />
-            Año: {{ proyecto.year }}
+            Anio: {{ proyecto.year }}
           </p>
 
           <div class="herramientas">
@@ -133,11 +123,14 @@ const logoHerramienta = (herramienta: string) => {
           </template>
         </div>
       </Card>
-    </div>
+    </TransitionGroup>
 
-    <p v-if="proyectosFiltrados.length === 0" class="sin-resultados">
-      No hay proyectos en esta categoria todavia.
-    </p>
+    <div v-if="proyectosFiltrados.length === 0" class="sin-resultados">
+      <p>No hay proyectos en esta categoria todavia.</p>
+      <RouterLink v-if="categoriaActiva" to="/portfolio/proyectos" class="boton-categorias">
+        Volver a ver todos
+      </RouterLink>
+    </div>
   </section>
 </template>
 
@@ -297,7 +290,7 @@ const logoHerramienta = (herramienta: string) => {
 .placeholder-visual {
   min-height: 0;
   height: 65%;
-   width: 80%;
+  width: 80%;
   border-radius: 14px;
   background: transparent;
   color: #730e0e;
@@ -309,9 +302,8 @@ const logoHerramienta = (herramienta: string) => {
   letter-spacing: 0.08em;
   font-size: 0.72rem;
   font-weight: 600;
-  overflow: hidden;     
+  overflow: hidden;
   max-width: 3000px;
-
 }
 
 .imagen-preview {
@@ -323,6 +315,24 @@ const logoHerramienta = (herramienta: string) => {
 
 .sin-resultados {
   margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.sin-resultados p {
+  margin: 0;
+}
+
+.fade-proyectos-enter-active,
+.fade-proyectos-leave-active {
+  transition: opacity 0.22s ease;
+}
+
+.fade-proyectos-enter-from,
+.fade-proyectos-leave-to {
+  opacity: 0;
 }
 
 @media (min-width: 980px) {

@@ -1,13 +1,14 @@
 <script setup lang="ts">
+import { categoryLabels, type ProjectCategory } from "@/data/projects";
 import { ArrowRight } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
-const categorias = [
-  { id: "branding", titulo: "LOGO Y BRANDING" },
-  { id: "campaign-designs", titulo: "CAMPAÑAS" },
-  { id: "ilustracion-digital", titulo: "ILUSTRACION DIGITAL" },
-  { id: "ilustracion-grafica", titulo: "ILUSTRACION GRAFICA" },
-];
+const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][]).map(
+  ([id, titulo]) => ({
+    id,
+    titulo: titulo.toUpperCase(),
+  }),
+);
 </script>
 
 <template>

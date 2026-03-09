@@ -29,10 +29,16 @@ onBeforeUnmount(() => {
 <template>
   <div class="franja-contacto" aria-label="Contacto">
     <div class="franja-pista">
-      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
-      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
-      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
-      <span class="franja-texto">@_.amaandaa__ amanda.s.mansilla@gmail.com</span>
+      <div class="franja-grupo">
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+      </div>
+      <div class="franja-grupo" aria-hidden="true">
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+        <span class="franja-texto">Instagram: @_.amaandaa__ · Gmail: amanda.s.mansilla@gmail.com</span>
+      </div>
     </div>
   </div>
 
@@ -63,15 +69,21 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   width: max-content;
-  min-width: 100%;
   height: 100%;
-  animation: deslizar-franja 24s linear infinite;
+  animation: deslizar-franja 20s linear infinite;
+}
+
+.franja-grupo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 2rem;
+  padding-right: 2rem;
 }
 
 .franja-texto {
   flex: 0 0 auto;
   white-space: nowrap;
-  margin-right: 2rem;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.02em;

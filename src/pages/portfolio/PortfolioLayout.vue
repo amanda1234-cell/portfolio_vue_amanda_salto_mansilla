@@ -13,9 +13,9 @@ import { RouterLink, RouterView } from "vue-router";
         <h1 class="site-title">Mi portfolio</h1>
       </div>
       <nav class="portfolio-nav">
-        <RouterLink to="/portfolio/proyectos">Proyectos</RouterLink>
-        <RouterLink to="/portfolio/sobre-mi">Sobre mí</RouterLink>
-        <RouterLink to="/portfolio/contacto">Contacto</RouterLink>
+        <RouterLink to="/portfolio/proyectos" class="nav-boton">PROYECTOS</RouterLink>
+        <RouterLink to="/portfolio/sobre-mi" class="nav-boton">SOBRE MÍ</RouterLink>
+        <RouterLink to="/portfolio/contacto" class="nav-boton">CONTACTO</RouterLink>
       </nav>
     </header>
 
@@ -76,11 +76,33 @@ import { RouterLink, RouterView } from "vue-router";
 .portfolio-nav a {
   text-decoration: none;
   color: inherit;
-  font-weight: 600;
+  font-family: "MontserratLocal", "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  background: #efe2e5;
+  border: 1px solid rgba(115, 14, 14, 0.22);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-boton:hover {
+  background: #e8d7db;
+  border-color: rgba(115, 14, 14, 0.34);
 }
 
 .portfolio-nav a.router-link-active {
   color: #730e0e;
+  background: #730e0e;
+  border-color: #730e0e;
+  color: #fff;
 }
 
 @media (min-width: 768px) {

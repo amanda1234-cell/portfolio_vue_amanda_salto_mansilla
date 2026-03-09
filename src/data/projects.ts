@@ -1,13 +1,19 @@
+export const categoryLabels = {
+  branding: "Logo y branding",
+  "campaign-designs": "Campanas",
+  "ilustracion-digital": "Ilustracion digital",
+  "ilustracion-grafica": "Ilustracion grafica",
+} as const;
+
+export type ProjectCategory = keyof typeof categoryLabels;
+
 export type Project = {
   id: string;
-  category:
-    | "branding"
-    | "campaign-designs"
-    | "ilustracion-digital"
-    | "ilustracion-grafica";
+  category: ProjectCategory;
   title: string;
   description: string;
   year: string;
+  campaign?: string;
   technologies: string[];
   image: string;
   liveUrl: string;
@@ -20,6 +26,17 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "kaoka",
+    category: "branding",
+    title: "Kaoka - Identidad visual",
+    description:
+      "Branding integral para marca de chocolate artesanal con sistema grafico, piezas impresas y mockups.",
+    year: "2024",
+    technologies: ["Illustrator", "Photoshop"],
+    image: "/proyectos/kaoka/poster-kaoka.png",
+    liveUrl: "https://example.com/kaoka",
+  },
   {
     id: "branding-cafe",
     category: "branding",
@@ -35,6 +52,7 @@ export const projects: Project[] = [
     id: "campaign-lo-que-nos-mueve",
     category: "campaign-designs",
     title: "Lo que nos mueve",
+    campaign: "Lo que nos mueve",
     description:
       "Campana visual enfocada en comunidad, intereses compartidos y accion social.",
     year: "2025",

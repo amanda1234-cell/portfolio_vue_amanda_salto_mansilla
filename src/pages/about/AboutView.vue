@@ -162,7 +162,7 @@ const paginaAnterior = () => {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center center;
+  object-position: center 38%;
 }
 
 .texto-who {
