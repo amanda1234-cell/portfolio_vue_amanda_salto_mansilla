@@ -1,23 +1,55 @@
-<script setup lang="ts">
-import { ref, onBeforeUnmount } from "vue";
+﻿<script setup lang="ts">
+import { ref, onUnmounted, computed } from "vue";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, Maximize2 } from "lucide-vue-next";
+import { ArrowLeft, X, Maximize2, ChevronLeft, ChevronRight } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
-const imagenSeleccionada = ref<string | null>(null);
+const imagenSeleccionadaIdx = ref<number | null>(null);
+const listaActual = ref<{ src: string; alt: string }[]>([]);
 
-const abrirImagen = (src: string) => {
-  imagenSeleccionada.value = src;
-  document.body.style.overflow = "hidden";
+const abrirImagen = (lista: { src: string; alt: string }[], index: number) => {
+  listaActual.value = lista;
+  imagenSeleccionadaIdx.value = index;
+  if (typeof window !== "undefined") {
+    document.body.style.overflow = "hidden";
+  }
 };
 
 const cerrarImagen = () => {
-  imagenSeleccionada.value = null;
-  document.body.style.overflow = "auto";
+  imagenSeleccionadaIdx.value = null;
+  listaActual.value = [];
+  if (typeof window !== "undefined") {
+    document.body.style.overflow = "";
+  }
 };
 
-onBeforeUnmount(() => {
-  document.body.style.overflow = "auto";
+const fotoActual = computed(() => {
+  if (imagenSeleccionadaIdx.value !== null) {
+    return listaActual.value[imagenSeleccionadaIdx.value];
+  }
+  return null;
+});
+
+const siguienteFoto = () => {
+  if (imagenSeleccionadaIdx.value !== null && imagenSeleccionadaIdx.value < listaActual.value.length - 1) {
+    imagenSeleccionadaIdx.value += 1;
+  } else {
+    imagenSeleccionadaIdx.value = 0;
+  }
+};
+
+const anteriorFoto = () => {
+  if (imagenSeleccionadaIdx.value !== null && imagenSeleccionadaIdx.value > 0) {
+    imagenSeleccionadaIdx.value -= 1;
+  } else {
+    imagenSeleccionadaIdx.value = listaActual.value.length - 1;
+  }
+};
+
+onUnmounted(() => {
+  if (typeof window !== "undefined") {
+    document.body.style.overflow = "";
+  }
 });
 
 const proyecto = {
@@ -28,7 +60,7 @@ const proyecto = {
     "Desarrollo de branding integral para marca de chocolate artesanal. Estetica retro-funk con una paleta vibrante y sistema de empaques ilustrados.",
   secciones: [
     {
-      titulo: "Gama de Chocolates + Color",
+      titulo: "Gama de Chocolates",
       items: [
         { src: "/proyectos/kaoka/gama-leche-canela-rosa.png", alt: "Leche y Canela" },
         { src: "/proyectos/kaoka/gama-naranja-almendras-menta.png", alt: "Naranja y Almendras" },
@@ -69,60 +101,78 @@ const proyecto = {
 </script>
 
 <template>
-  <section class="detalle-kaoka">
-    <RouterLink to="/portfolio/proyectos" class="volver-link">
-      <Button class="boton-volver">
-        <ArrowLeft :size="18" /> Volver a proyectos
-      </Button>
-    </RouterLink>
+  <div class="page-wrapper">
+    <section class="detalle-kaoka">
+      <RouterLink to="/portfolio/proyectos" class="volver-link">
+        <Button class="boton-volver">
+          <ArrowLeft :size="18" /> Volver a proyectos
+        </Button>
+      </RouterLink>
 
-    <header class="header-editorial">
-      <div class="header-content">
-        <span class="categoria-tag">{{ proyecto.category }}</span>
-        <h1 class="titulo-kaoka">{{ proyecto.title }}</h1>
-        <p class="descripcion-kaoka">{{ proyecto.description }}</p>
-      </div>
-      <div class="header-meta">
-        <p><strong>Anio:</strong> {{ proyecto.year }}</p>
-        <p><strong>Cliente:</strong> Kaoka Chocolates</p>
-      </div>
-    </header>
+      <header class="header-editorial">
+        <div class="header-content">
+          <span class="categoria-tag">{{ proyecto.category }}</span>
+          <h1 class="titulo-kaoka">{{ proyecto.title }}</h1>
+          <p class="descripcion-kaoka">{{ proyecto.description }}</p>
+        </div>
+      </header>
 
-    <div class="galerias-container">
-      <div v-for="(seccion, index) in proyecto.secciones" :key="index" class="bloque-seccion">
-        <h2 class="subtitulo-seccion">{{ seccion.titulo }}</h2>
-
-        <div class="carrusel-horizontal">
-          <div
-            v-for="img in seccion.items"
-            :key="img.src"
-            class="tarjeta-foto"
-            @click="abrirImagen(img.src)"
-          >
-            <div class="contenedor-estandar">
-              <img :src="img.src" :alt="img.alt" loading="lazy" class="foto-kaoka" />
-              <div class="overlay-zoom">
-                <Maximize2 :size="24" color="white" />
+      <div class="galerias-container">
+        <div v-for="(seccion, index) in proyecto.secciones" :key="index" class="bloque-seccion">
+          <h2 class="subtitulo-seccion">{{ seccion.titulo }}</h2>
+          <div class="grid-ajustado" :class="`items-${seccion.items.length}`">
+            <div
+              v-for="(img, idx) in seccion.items"
+              :key="img.src"
+              class="tarjeta-foto"
+              @click="abrirImagen(seccion.items, idx)"
+            >
+              <div class="contenedor-estandar">
+                <img :src="img.src" :alt="img.alt" loading="lazy" class="foto-kaoka" />
+                <div class="overlay-zoom">
+                  <Maximize2 :size="24" color="white" />
+                </div>
               </div>
+              <p class="pie-foto">{{ img.alt }}</p>
             </div>
-            <p class="pie-foto">{{ img.alt }}</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <Transition name="fade">
-      <div v-if="imagenSeleccionada" class="modal-overlay" @click="cerrarImagen">
-        <button class="boton-cerrar" @click="cerrarImagen">
-          <X :size="32" />
-        </button>
-        <img :src="imagenSeleccionada" class="imagen-full" @click.stop />
-      </div>
-    </Transition>
-  </section>
+    <Teleport to="body">
+      <Transition name="fade">
+        <div v-if="fotoActual" class="modal-overlay" @click="cerrarImagen">
+          <button class="btn-modal cerrar" @click.stop="cerrarImagen">
+            <X :size="30" />
+          </button>
+
+          <button v-if="listaActual.length > 1" class="btn-modal flecha izq" @click.stop="anteriorFoto">
+            <ChevronLeft :size="40" />
+          </button>
+
+          <div class="contenedor-img-full">
+            <img :src="fotoActual.src" :alt="fotoActual.alt" class="imagen-full" @click.stop />
+            <p class="caption-modal">
+              {{ fotoActual.alt }} ({{ (imagenSeleccionadaIdx ?? 0) + 1 }} / {{ listaActual.length }})
+            </p>
+          </div>
+
+          <button v-if="listaActual.length > 1" class="btn-modal flecha der" @click.stop="siguienteFoto">
+            <ChevronRight :size="40" />
+          </button>
+        </div>
+      </Transition>
+    </Teleport>
+  </div>
 </template>
 
 <style scoped>
+.page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+
 .detalle-kaoka {
   padding: clamp(1rem, 5vw, 4rem);
   color: #730e0e;
@@ -131,11 +181,6 @@ const proyecto = {
 }
 
 .header-editorial {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 2rem;
   margin: 4rem 0;
   border-bottom: 1px solid rgba(115, 14, 14, 0.2);
   padding-bottom: 3rem;
@@ -175,21 +220,37 @@ const proyecto = {
   border-left: 4px solid #730e0e;
 }
 
-.carrusel-horizontal {
+.grid-ajustado {
   display: flex;
   gap: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 1.5rem;
-  scrollbar-width: none;
-}
-
-.carrusel-horizontal::-webkit-scrollbar {
-  display: none;
+  flex-wrap: wrap;
 }
 
 .tarjeta-foto {
-  flex: 0 0 320px;
+  flex: 0 0 100%;
   cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .tarjeta-foto {
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .items-4 .tarjeta-foto,
+  .items-5 .tarjeta-foto {
+    flex: 0 0 calc(25% - 1.15rem);
+  }
+
+  .items-3 .tarjeta-foto {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
+
+  .items-1 .tarjeta-foto,
+  .items-2 .tarjeta-foto {
+    flex: 0 0 450px;
+  }
 }
 
 .contenedor-estandar {
@@ -198,15 +259,19 @@ const proyecto = {
   overflow: hidden;
   border-radius: 8px;
   position: relative;
-  background: #efe2e5;
+  background: #fdf6f7;
   border: 1px solid rgba(115, 14, 14, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .foto-kaoka {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+  object-fit: contain;
+  padding: 10px;
+  transition: transform 0.4s ease;
 }
 
 .overlay-zoom {
@@ -227,10 +292,6 @@ const proyecto = {
   opacity: 1;
 }
 
-.tarjeta-foto:hover .foto-kaoka {
-  transform: scale(1.08);
-}
-
 .pie-foto {
   margin-top: 0.8rem;
   font-size: 0.85rem;
@@ -240,47 +301,81 @@ const proyecto = {
 
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(8px);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.96);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 2rem;
+  justify-content: space-between;
+  z-index: 10000;
   cursor: zoom-out;
+  padding: 20px;
+}
+
+.contenedor-img-full {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .imagen-full {
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 85vw;
+  max-height: 80vh;
   object-fit: contain;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  pointer-events: auto;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
 }
 
-.boton-cerrar {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: none;
-  border: none;
+.caption-modal {
   color: white;
-  cursor: pointer;
-  z-index: 10000;
-  transition: transform 0.2s ease;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
 }
 
-.boton-cerrar:hover {
+.btn-modal {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 10001;
+  pointer-events: auto;
+}
+
+.btn-modal:hover {
+  background: rgba(115, 14, 14, 0.8);
   transform: scale(1.1);
+}
+
+.cerrar {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.flecha {
+  height: 80px;
+  width: 50px;
+  border-radius: 8px;
+  margin: 0 10px;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s;
 }
 
 .fade-enter-from,
@@ -293,12 +388,31 @@ const proyecto = {
   border: 1px solid #dcc5cb;
   color: #730e0e;
   border-radius: 99px;
-  font-weight: 700;
 }
 
 @media (max-width: 768px) {
   .tarjeta-foto {
     flex: 0 0 85%;
+  }
+
+  .flecha {
+    position: absolute;
+    bottom: 40px;
+    height: 60px;
+    margin: 0;
+    background: rgba(115, 14, 14, 0.6);
+  }
+
+  .izq {
+    left: 20px;
+  }
+
+  .der {
+    right: 20px;
+  }
+
+  .imagen-full {
+    max-width: 95vw;
   }
 }
 </style>
