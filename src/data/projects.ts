@@ -29,6 +29,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "envidia",
+    category: "carteleria",
+    title: "Envidia - Cartelería teatral 'Siete'",
+    description:
+      "Cartelería para la obra teatral 'Siete' con enfoque minimalista, fotográfico-collage y textura orgánica.",
+    year: "2025-2026",
+    technologies: ["Cartelería", "Diseño gráfico", "Fotografía", "Tipografía"],
+    image: "/proyectos/envidia/poster-minimalista.jpg",
+    liveUrl: "https://example.com/envidia",
+  },
+  {
     id: "crefad",
     category: "campaign-designs",
     title: "CREFAD - Campaña Congreso Iberoamericano",

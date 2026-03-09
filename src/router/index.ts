@@ -4,6 +4,8 @@ import ContactView from "@/pages/contact/ContactView.vue";
 import PortfolioLayout from "@/pages/portfolio/PortfolioLayout.vue";
 import ProjectCategoriesView from "@/pages/projects/ProjectCategoriesView.vue";
 import KaokaDetailView from "@/pages/projects/KaokaDetailView.vue";
+import CrefadDetailView from "@/pages/projects/CrefadDetailView.vue";
+import EnvidiaDetailView from "@/pages/projects/EnvidiaDetailView.vue";
 import ProjectDetailView from "@/pages/projects/ProjectDetailView.vue";
 import ProjectsView from "@/pages/projects/ProjectsView.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -41,6 +43,16 @@ export const router = createRouter({
           path: "proyectos/kaoka",
           name: "project-detail-kaoka",
           component: KaokaDetailView,
+        },
+        {
+          path: "proyectos/crefad",
+          name: "project-detail-crefad",
+          component: CrefadDetailView,
+        },
+        {
+          path: "proyectos/envidia",
+          name: "project-detail-envidia",
+          component: EnvidiaDetailView,
         },
         {
           path: "proyectos/:id",
