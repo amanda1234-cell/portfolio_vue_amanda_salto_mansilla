@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { Card } from "@/components/ui/card";
 import {
   categoryLabels,
@@ -56,14 +56,14 @@ const logoHerramienta = (herramienta: string) => {
       <h2 class="titulo-editorial">Proyectos</h2>
       <div class="acciones-encabezado">
         <RouterLink v-if="!categoriaActiva" to="/portfolio/proyectos/categorias" class="boton-categorias">
-          Ver categorías
+          Ver categorÃ­as
         </RouterLink>
         <RouterLink
           v-if="categoriaActiva"
           to="/portfolio/proyectos/categorias"
           class="boton-categorias"
         >
-          Volver a categorías
+          Volver a categorÃ­as
         </RouterLink>
       </div>
     </div>
@@ -85,7 +85,7 @@ const logoHerramienta = (herramienta: string) => {
 
           <p class="meta">
             <CalendarDays :size="18" />
-            Año: {{ proyecto.year }}
+            AÃ±o: {{ proyecto.year }}
           </p>
 
           <div class="herramientas">
@@ -123,20 +123,20 @@ const logoHerramienta = (herramienta: string) => {
           />
           <template v-else>
             <Image :size="22" />
-            <span>(insertar imagen o logo)</span>
+            
           </template>
         </div>
       </Card>
     </TransitionGroup>
 
     <div v-if="proyectosFiltrados.length === 0" class="sin-resultados">
-      <p>No hay proyectos en esta categoría todavía.</p>
+      <p>No hay proyectos en esta categorÃ­a todavÃ­a.</p>
       <RouterLink
         v-if="categoriaActiva"
         to="/portfolio/proyectos/categorias"
         class="boton-categorias"
       >
-        Volver a categorías
+        Volver a categorÃ­as
       </RouterLink>
     </div>
   </section>
@@ -356,5 +356,6 @@ const logoHerramienta = (herramienta: string) => {
   }
 }
 </style>
+
 
 
