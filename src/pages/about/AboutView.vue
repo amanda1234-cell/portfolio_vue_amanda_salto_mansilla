@@ -189,7 +189,13 @@ onUnmounted(() => window.removeEventListener("keydown", handleKeydown));
               <h4>Software skills</h4>
               <div class="software-grid">
                 <div v-for="item in softwareSkills" :key="item.nombre" class="software-badge" :title="item.nombre">
-                  <img :src="item.logo" :alt="item.nombre" class="software-logo" loading="lazy" />
+                  <img
+                    :src="item.logo"
+                    :alt="item.nombre"
+                    class="software-logo"
+                    :class="{ 'software-logo-procreate': item.nombre === 'Procreate' }"
+                    loading="lazy"
+                  />
                 </div>
               </div>
 
@@ -870,6 +876,11 @@ onUnmounted(() => window.removeEventListener("keydown", handleKeydown));
   height: auto;
   max-height: 40px;
   object-fit: contain;
+}
+
+.columna-skills .software-logo-procreate {
+  transform: scale(1.18);
+  transform-origin: center;
 }
 
 .experiencia .p-collage {

@@ -39,8 +39,6 @@ import { RouterLink } from "vue-router";
         </RouterLink>
       </div>
     </div>
-
-    <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-[#111111] px-4 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#ff0a8a]">(insertar logo iniciales)</p>
   </section>
 </template>
 
@@ -80,4 +78,3 @@ import { RouterLink } from "vue-router";
   margin-top: -0.55rem;
 }
 </style>
-
