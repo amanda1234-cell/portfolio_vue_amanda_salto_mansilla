@@ -1,8 +1,16 @@
 ﻿<script setup lang="ts">
-import { ref, onUnmounted, computed } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, Maximize2, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
+const rutaVolverAProyectos = computed(() => {
+  const categoria = route.query.categoria;
+  return typeof categoria === "string"
+    ? { path: "/portfolio/proyectos", query: { categoria } }
+    : "/portfolio/proyectos/categorias";
+});
 
 const imagenSeleccionadaIdx = ref<number | null>(null);
 const listaActual = ref<{ src: string; alt: string }[]>([]);
@@ -46,8 +54,39 @@ const anteriorFoto = () => {
   }
 };
 
+const esElementoEditable = (target: EventTarget | null) => {
+  if (!(target instanceof HTMLElement)) return false;
+  const tag = target.tagName;
+  return target.isContentEditable || tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+};
+
+const handleKeydown = (event: KeyboardEvent) => {
+  if (esElementoEditable(event.target)) return;
+
+  if (event.key === "Escape" && fotoActual.value) {
+    cerrarImagen();
+    event.preventDefault();
+    return;
+  }
+
+  if (!fotoActual.value || listaActual.value.length <= 1) return;
+
+  if (event.key === "ArrowRight") {
+    siguienteFoto();
+    event.preventDefault();
+  } else if (event.key === "ArrowLeft") {
+    anteriorFoto();
+    event.preventDefault();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
 onUnmounted(() => {
   if (typeof window !== "undefined") {
+    window.removeEventListener("keydown", handleKeydown);
     document.body.style.overflow = "";
   }
 });
@@ -57,7 +96,7 @@ const proyecto = {
   category: "Logo y Branding",
   year: "2024",
   description:
-    "Desarrollo de branding integral para marca de chocolate artesanal. Estetica retro-funk con una paleta vibrante y sistema de empaques ilustrados.",
+    "Desarrollo de branding integral para marca de chocolate artesanal. Estética retro-funk con una paleta vibrante y sistema de empaques ilustrados.",
   secciones: [
     {
       titulo: "Gama de Chocolates",
@@ -65,27 +104,27 @@ const proyecto = {
         { src: "/proyectos/kaoka/gama-leche-canela-rosa.png", alt: "Leche y Canela" },
         { src: "/proyectos/kaoka/gama-naranja-almendras-menta.png", alt: "Naranja y Almendras" },
         { src: "/proyectos/kaoka/gama-cacao-clasico-marron.png", alt: "Chocolate Puro 90%" },
-        { src: "/proyectos/kaoka/gama-miel-avellanas-amarillo.png", alt: "Te Chai y Jengibre" },
+        { src: "/proyectos/kaoka/gama-miel-avellanas-amarillo.png", alt: "Té Chai y Jengibre" },
       ],
     },
     {
-      titulo: "Tarjetas y Papeleria",
+      titulo: "Tarjetas y Papelería",
       items: [
         { src: "/proyectos/kaoka/tarjeta-presentacion-delante.png", alt: "Tarjeta - Delante" },
-        { src: "/proyectos/kaoka/tarjeta-presentacion-detras.png", alt: "Tarjeta - Detras" },
+        { src: "/proyectos/kaoka/tarjeta-presentacion-detras.png", alt: "Tarjeta - Detrás" },
         { src: "/proyectos/kaoka/tarjeta-informativa.png", alt: "Tarjeta Informativa" },
       ],
     },
     {
-      titulo: "Poster Promocional",
-      items: [{ src: "/proyectos/kaoka/poster-kaoka.png", alt: "Poster Promocional" }],
+      titulo: "Póster Promocional",
+      items: [{ src: "/proyectos/kaoka/poster-kaoka.png", alt: "Póster Promocional" }],
     },
     {
       titulo: "Mockups",
       items: [
         { src: "/proyectos/kaoka/box-mockup.png", alt: "Chocolates Box" },
         { src: "/proyectos/kaoka/chocolates-mockup.png", alt: "Mockup Chocolates" },
-        { src: "/proyectos/kaoka/flyers-mockup.png", alt: "Presentacion Flyers" },
+        { src: "/proyectos/kaoka/flyers-mockup.png", alt: "Presentación Flyers" },
       ],
     },
     {
@@ -93,8 +132,8 @@ const proyecto = {
       items: [{ src: "/proyectos/kaoka/tote-bag.png", alt: "Tote Bag Kaoka" }],
     },
     {
-      titulo: "Poster de Presentacion",
-      items: [{ src: "/proyectos/kaoka/poster-kaoka.png", alt: "Poster de Presentacion" }],
+      titulo: "Póster de Presentación",
+      items: [{ src: "/proyectos/kaoka/poster-kaoka.png", alt: "Póster de Presentación" }],
     },
   ],
 };
@@ -103,7 +142,7 @@ const proyecto = {
 <template>
   <div class="page-wrapper">
     <section class="detalle-kaoka">
-      <RouterLink to="/portfolio/proyectos" class="volver-link">
+      <RouterLink :to="rutaVolverAProyectos" class="volver-link">
         <Button class="boton-volver">
           <ArrowLeft :size="18" /> Volver a proyectos
         </Button>
@@ -175,14 +214,14 @@ const proyecto = {
 
 .detalle-kaoka {
   padding: clamp(1rem, 5vw, 4rem);
-  color: #730e0e;
+  color: #ffffff;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .header-editorial {
   margin: 4rem 0;
-  border-bottom: 1px solid rgba(115, 14, 14, 0.2);
+  border-bottom: 1px solid rgba(255, 10, 138, 0.2);
   padding-bottom: 3rem;
 }
 
@@ -217,7 +256,7 @@ const proyecto = {
   font-weight: 800;
   margin-bottom: 2rem;
   padding-left: 1rem;
-  border-left: 4px solid #730e0e;
+  border-left: 4px solid #ff0a8a;
 }
 
 .grid-ajustado {
@@ -259,8 +298,8 @@ const proyecto = {
   overflow: hidden;
   border-radius: 8px;
   position: relative;
-  background: #fdf6f7;
-  border: 1px solid rgba(115, 14, 14, 0.1);
+  background: #111111;
+  border: 1px solid rgba(255, 10, 138, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -280,7 +319,7 @@ const proyecto = {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(115, 14, 14, 0.3);
+  background: rgba(255, 10, 138, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -353,7 +392,7 @@ const proyecto = {
 }
 
 .btn-modal:hover {
-  background: rgba(115, 14, 14, 0.8);
+  background: rgba(255, 10, 138, 0.8);
   transform: scale(1.1);
 }
 
@@ -385,8 +424,8 @@ const proyecto = {
 
 .boton-volver {
   background: white;
-  border: 1px solid #dcc5cb;
-  color: #730e0e;
+  border: 1px solid #2a2a2a;
+  color: #ffffff;
   border-radius: 99px;
 }
 
@@ -400,7 +439,7 @@ const proyecto = {
     bottom: 40px;
     height: 60px;
     margin: 0;
-    background: rgba(115, 14, 14, 0.6);
+    background: rgba(255, 10, 138, 0.6);
   }
 
   .izq {
@@ -416,3 +455,4 @@ const proyecto = {
   }
 }
 </style>
+

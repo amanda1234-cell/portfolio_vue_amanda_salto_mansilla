@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const x = ref(0);
@@ -60,8 +60,8 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 24px;
   overflow: hidden;
-  border-bottom: 1px solid rgba(115, 14, 14, 0.22);
-  background: #fff;
+  border-bottom: 1px solid rgba(255, 10, 138, 0.22);
+  background: #000000;
   z-index: 10000;
 }
 
@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #730e0e;
+  color: #ffffff;
 }
 
 .contenido-app {
@@ -101,7 +101,7 @@ onBeforeUnmount(() => {
   width: 40px;
   height: 22px;
   border-radius: 999px;
-  background: rgba(40, 0, 8, 0.14);
+  background: rgba(255, 10, 138, 0.14);
   filter: blur(8px);
   pointer-events: none;
   opacity: 0;
@@ -128,3 +128,4 @@ onBeforeUnmount(() => {
   }
 }
 </style>
+

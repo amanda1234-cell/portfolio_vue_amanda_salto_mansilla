@@ -1,9 +1,17 @@
-<script setup lang="ts">
+ï»¿<script setup lang="ts">
 import { projects as proyectos } from "@/data/projects";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-vue-next";
 import { computed } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
+const rutaVolverAProyectos = computed(() => {
+  const categoria = route.query.categoria;
+  return typeof categoria === "string"
+    ? { path: "/portfolio/proyectos", query: { categoria } }
+    : "/portfolio/proyectos/categorias";
+});
 
 const props = defineProps<{
   id: string;
@@ -22,7 +30,7 @@ const slots = computed(() => {
 
 <template>
   <section class="detalle-galeria">
-    <RouterLink to="/portfolio/proyectos" class="volver">
+    <RouterLink :to="rutaVolverAProyectos" class="volver">
       <Button class="boton-volver">
         <ArrowLeft :size="18" />
         Volver a proyectos
@@ -41,7 +49,7 @@ const slots = computed(() => {
                 </p>
               </object>
               <a :href="slot.src" target="_blank" rel="noopener noreferrer" class="pdf-link">
-                Abrir PDF en otra pestana
+                Abrir PDF en otra pestaÃ±a
               </a>
             </div>
           </template>
@@ -57,7 +65,7 @@ const slots = computed(() => {
       </div>
     </article>
 
-    <RouterLink to="/portfolio/proyectos" class="volver">
+    <RouterLink :to="rutaVolverAProyectos" class="volver">
       <Button class="boton-volver">
         <ArrowLeft :size="18" />
         Volver a proyectos
@@ -71,7 +79,7 @@ const slots = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  color: #730e0e;
+  color: #ffffff;
 }
 
 .volver {
@@ -80,14 +88,14 @@ const slots = computed(() => {
 
 .boton-volver {
   border-radius: 12px;
-  border: 1px solid #dcc5cb;
-  background: #ffffff;
-  color: #730e0e;
+  border: 1px solid #2a2a2a;
+  background: #000000;
+  color: #ffffff;
 }
 
 .boton-volver:hover {
-  background: #efe2e5;
-  color: #730e0e;
+  background: #111111;
+  color: #ffffff;
 }
 
 .recuadro-foto {
@@ -105,7 +113,7 @@ const slots = computed(() => {
   width: 100%;
   height: 100%;
   border-radius: 0;
-  border: 1px dashed rgba(115, 14, 14, 0.45);
+  border: 1px dashed rgba(255, 10, 138, 0.45);
   background: transparent;
   display: flex;
   align-items: center;
@@ -132,9 +140,9 @@ const slots = computed(() => {
   align-items: center;
   justify-content: center;
   padding: 0.45rem 0.8rem;
-  border-top: 1px solid rgba(115, 14, 14, 0.25);
-  color: #730e0e;
-  background: #fff;
+  border-top: 1px solid rgba(255, 10, 138, 0.25);
+  color: #ffffff;
+  background: #000000;
   text-decoration: none;
   font-weight: 700;
 }
@@ -149,7 +157,7 @@ const slots = computed(() => {
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #730e0e;
+  color: #ffffff;
 }
 
 @media (max-width: 767px) {
@@ -158,3 +166,4 @@ const slots = computed(() => {
   }
 }
 </style>
+

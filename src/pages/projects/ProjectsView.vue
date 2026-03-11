@@ -30,21 +30,21 @@ const proyectosFiltrados = computed(() =>
 const logoHerramienta = (herramienta: string) => {
   const clave = herramienta.toLowerCase();
   const mapa: Record<string, { etiqueta: string; fondo: string; color: string }> = {
-    illustrator: { etiqueta: "Ai", fondo: "#efe2e5", color: "#730E0E" },
-    photoshop: { etiqueta: "Ps", fondo: "#efe2e5", color: "#730E0E" },
-    figma: { etiqueta: "Fg", fondo: "#efe2e5", color: "#730E0E" },
-    canva: { etiqueta: "Cv", fondo: "#efe2e5", color: "#730E0E" },
-    vue: { etiqueta: "Vu", fondo: "#efe2e5", color: "#730E0E" },
-    typescript: { etiqueta: "Ts", fondo: "#efe2e5", color: "#730E0E" },
-    tailwind: { etiqueta: "Tw", fondo: "#efe2e5", color: "#730E0E" },
-    pinia: { etiqueta: "Pi", fondo: "#efe2e5", color: "#730E0E" },
+    illustrator: { etiqueta: "Ai", fondo: "#111111", color: "#ff0a8a" },
+    photoshop: { etiqueta: "Ps", fondo: "#111111", color: "#ff0a8a" },
+    figma: { etiqueta: "Fg", fondo: "#111111", color: "#ff0a8a" },
+    canva: { etiqueta: "Cv", fondo: "#111111", color: "#ff0a8a" },
+    vue: { etiqueta: "Vu", fondo: "#111111", color: "#ff0a8a" },
+    typescript: { etiqueta: "Ts", fondo: "#111111", color: "#ff0a8a" },
+    tailwind: { etiqueta: "Tw", fondo: "#111111", color: "#ff0a8a" },
+    pinia: { etiqueta: "Pi", fondo: "#111111", color: "#ff0a8a" },
   };
 
   return (
     mapa[clave] ?? {
       etiqueta: herramienta.slice(0, 2).toUpperCase(),
-      fondo: "#efe2e5",
-      color: "#730E0E",
+      fondo: "#111111",
+      color: "#ff0a8a",
     }
   );
 };
@@ -55,11 +55,15 @@ const logoHerramienta = (herramienta: string) => {
     <div class="encabezado-proyectos">
       <h2 class="titulo-editorial">Proyectos</h2>
       <div class="acciones-encabezado">
-        <RouterLink to="/portfolio/proyectos/categorias" class="boton-categorias">
-          Ver categorias
+        <RouterLink v-if="!categoriaActiva" to="/portfolio/proyectos/categorias" class="boton-categorias">
+          Ver categorías
         </RouterLink>
-        <RouterLink v-if="categoriaActiva" to="/portfolio/proyectos" class="boton-categorias">
-          Ver todos
+        <RouterLink
+          v-if="categoriaActiva"
+          to="/portfolio/proyectos/categorias"
+          class="boton-categorias"
+        >
+          Volver a categorías
         </RouterLink>
       </div>
     </div>
@@ -81,7 +85,7 @@ const logoHerramienta = (herramienta: string) => {
 
           <p class="meta">
             <CalendarDays :size="18" />
-            Anio: {{ proyecto.year }}
+            Año: {{ proyecto.year }}
           </p>
 
           <div class="herramientas">
@@ -104,7 +108,7 @@ const logoHerramienta = (herramienta: string) => {
             </ul>
           </div>
 
-          <RouterLink :to="`/portfolio/proyectos/${proyecto.id}`" class="enlace-detalle">
+          <RouterLink :to="categoriaActiva ? { path: `/portfolio/proyectos/${proyecto.id}`, query: { categoria: categoriaActiva } } : `/portfolio/proyectos/${proyecto.id}`" class="enlace-detalle">
             Ver detalle
             <ArrowRight :size="18" />
           </RouterLink>
@@ -126,9 +130,13 @@ const logoHerramienta = (herramienta: string) => {
     </TransitionGroup>
 
     <div v-if="proyectosFiltrados.length === 0" class="sin-resultados">
-      <p>No hay proyectos en esta categoria todavia.</p>
-      <RouterLink v-if="categoriaActiva" to="/portfolio/proyectos" class="boton-categorias">
-        Volver a ver todos
+      <p>No hay proyectos en esta categoría todavía.</p>
+      <RouterLink
+        v-if="categoriaActiva"
+        to="/portfolio/proyectos/categorias"
+        class="boton-categorias"
+      >
+        Volver a categorías
       </RouterLink>
     </div>
   </section>
@@ -136,7 +144,7 @@ const logoHerramienta = (herramienta: string) => {
 
 <style scoped>
 .proyectos {
-  color: #730e0e;
+  color: #ffffff;
 }
 
 .titulo-editorial {
@@ -163,8 +171,8 @@ const logoHerramienta = (herramienta: string) => {
 
 .boton-categorias {
   border-radius: 999px;
-  background: #efe2e5;
-  color: #730e0e;
+  background: #111111;
+  color: #ffffff;
   text-decoration: none;
   padding: 0.38rem 0.85rem;
   font-size: 0.82rem;
@@ -173,8 +181,8 @@ const logoHerramienta = (herramienta: string) => {
 }
 
 .boton-categorias:hover {
-  background: #e8d7db;
-  color: #730e0e;
+  background: #1a1a1a;
+  color: #ffffff;
 }
 
 .filtro-activo {
@@ -259,7 +267,7 @@ const logoHerramienta = (herramienta: string) => {
 
 .herramientas li {
   border-radius: 0.4rem;
-  border: 1px solid rgba(115, 14, 14, 0.45);
+  border: 1px solid rgba(255, 10, 138, 0.45);
   width: 2.05rem;
   height: 2.05rem;
   font-size: 1rem;
@@ -273,18 +281,18 @@ const logoHerramienta = (herramienta: string) => {
   margin-top: 0.55rem;
   width: fit-content;
   text-decoration: none;
-  color: #730e0e;
+  color: #ffffff;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  border-bottom: 1px solid rgba(115, 14, 14, 0.45);
+  border-bottom: 1px solid rgba(255, 10, 138, 0.45);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .enlace-detalle:hover {
-  color: #730e0e;
-  border-color: #730e0e;
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
 .placeholder-visual {
@@ -293,7 +301,7 @@ const logoHerramienta = (herramienta: string) => {
   width: 80%;
   border-radius: 14px;
   background: transparent;
-  color: #730e0e;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -348,3 +356,5 @@ const logoHerramienta = (herramienta: string) => {
   }
 }
 </style>
+
+

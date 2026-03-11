@@ -2,7 +2,9 @@
   branding: "Logo y branding",
   "campaign-designs": "Campañas",
   "diseno-editorial": "Diseño editorial",
+  "diseno-tipografico": "Diseño tipográfico",
   carteleria: "Cartelería",
+  ilustracion: "Ilustración",
   "ilustracion-digital": "Ilustración digital",
   "ilustracion-grafica": "Ilustración gráfica",
 } as const;
@@ -28,6 +30,28 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "mentecatos",
+    category: "branding",
+    title: "Mentecatos",
+    description:
+      "Proyecto de branding integral para juego de mesa con identidad visual aplicada a caja, cartas y tablero.",
+    year: "2024",
+    technologies: ["Branding", "Diseño gráfico", "Packaging"],
+    image: "/proyectos/mentecatos/caja-frontal.jpg",
+    liveUrl: "https://example.com/mentecatos",
+  },
+  {
+    id: "huellas",
+    category: "diseno-tipografico",
+    title: "Huellas",
+    description:
+      "Exploración tipográfica donde cada letra se construye a partir de huellas dactilares.",
+    year: "2024",
+    technologies: ["Diseño tipográfico", "Tipografía", "Composición"],
+    image: "/proyectos/diseño tipografico/huellas/A.jpg",
+    liveUrl: "https://example.com/huellas",
+  },
   {
     id: "envidia",
     category: "carteleria",
@@ -63,19 +87,45 @@ export const projects: Project[] = [
     liveUrl: "https://example.com/kaoka",
   },
   {
-    id: "campaign-lo-que-nos-mueve",
+    id: "la-ladrona-de-libros",
+    category: "diseno-editorial",
+    title: "La Ladrona de Libros",
+    description:
+      "Proyecto de diseño editorial e ilustración para una nueva propuesta de cubierta e interiores inspirada en la novela de Markus Zusak.",
+    year: "2024",
+    technologies: ["Diseño editorial", "Illustrator", "Photoshop"],
+    image: "/proyectos/ladrona/portada-delante.jpg",
+    liveUrl: "https://example.com/la-ladrona-de-libros",
+  },
+  {
+    id: "macbeth",
+    category: "carteleria",
+    title: "Macbeth",
+    description:
+      "Cartel teatral con enfoque editorial y una dirección visual centrada en tensión, contraste y atmósfera dramática.",
+    year: "2024",
+    technologies: ["Diseño editorial", "Cartelería", "Photoshop"],
+    image: "/proyectos/macbeth/Cartel_Saltó_Mansilla_Amanda.jpg",
+    liveUrl: "https://example.com/macbeth",
+  },
+  {
+    id: "lo-que-nos-mueve",
     category: "campaign-designs",
     title: "Lo que nos mueve",
     campaign: "Lo que nos mueve",
     description:
       "Campaña visual enfocada en comunidad, intereses compartidos y acción social.",
-    year: "2025",
+    year: "2024",
     technologies: ["Illustrator", "Photoshop"],
-    image: "/proyectos/campana/mupi.jpg",
-    mupiImage: "/proyectos/campana/mupi.jpg",
+    image: "/proyectos/loquenosmueve/Mupi Cartel Rosa 2.jpg",
+    mupiImage: "/proyectos/loquenosmueve/Mupi Cartel Rosa 2.jpg",
     gallery: [
-      { src: "/proyectos/campana/captura-1-2.png", type: "image", objectPosition: "center top" },
-      { src: "/proyectos/campana/lo-que-nos-mueve-portfolio.pdf#view=FitH", type: "pdf" },
+      {
+        src: "/proyectos/loquenosmueve/Tarjetas def def-01.jpg",
+        type: "image",
+        objectPosition: "center center",
+      },
+      { src: "/proyectos/loquenosmueve/Folleto rosa mock up(1).png", type: "image" },
     ],
     liveUrl: "https://example.com/lo-que-nos-mueve",
   },
@@ -89,6 +139,17 @@ export const projects: Project[] = [
     technologies: ["Vue", "TypeScript", "Tailwind"],
     image: "https://via.placeholder.com/960x540?text=Web+Evento+Cultural",
     liveUrl: "https://example.com/evento-cultural",
+  },
+  {
+    id: "sobre-ruedas",
+    category: "ilustracion",
+    title: "Sobre Ruedas",
+    description:
+      "Proyecto de cómic y narrativa visual con composición secuencial, ritmo de lectura y enfoque ilustrativo.",
+    year: "2024",
+    technologies: ["Ilustración", "Narrativa visual", "Composición"],
+    image: "/proyectos/comic/secuencial_c_Saltó_Mansilla_Amanda.jpg",
+    liveUrl: "https://example.com/sobre-ruedas",
   },
   {
     id: "app-recetas",

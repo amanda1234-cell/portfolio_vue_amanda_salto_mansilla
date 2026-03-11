@@ -24,10 +24,66 @@ import { RouterLink, RouterView } from "vue-router";
 </template>
 
 <style scoped>
+@font-face {
+  font-family: "PoppinsLocal";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PoppinsLocal";
+  src: url("/fonts/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "PoppinsLocal";
+  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PoppinsLocal";
+  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PoppinsLocal";
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 .portfolio-layout {
   padding: 1rem;
-  color: #730e0e;
+  color: #ffffff;
   width: 100%;
+}
+
+.portfolio-layout :deep(p),
+.portfolio-layout :deep(li),
+.portfolio-layout :deep(label),
+.portfolio-layout :deep(input),
+.portfolio-layout :deep(textarea),
+.portfolio-layout :deep(small),
+.portfolio-layout :deep(.campo-titulo),
+.portfolio-layout :deep(.pdf-link),
+.portfolio-layout :deep(.pdf-fallback-text),
+.portfolio-layout :deep(.filtro-activo),
+.portfolio-layout :deep(.descripcion-proyecto),
+.portfolio-layout :deep(.meta),
+.portfolio-layout :deep(.herramientas-titulo),
+.portfolio-layout :deep(.sin-resultados p) {
+  font-family: "PoppinsLocal", sans-serif;
+}
+
+.portfolio-layout :deep(.nombre-firma) {
+  font-family: "above-the-sky-script", "Bickham Script Pro", cursive;
 }
 
 .portfolio-header {
@@ -51,15 +107,15 @@ import { RouterLink, RouterView } from "vue-router";
   justify-content: center;
   width: 34px;
   height: 34px;
-  background: #efe2e5;
+  background: #111111;
   border-radius: 999px;
-  color: #730e0e;
+  color: #ffffff;
   transition: all 0.2s ease;
 }
 
 .home-link:hover {
-  background: #e8d7db;
-  color: #730e0e;
+  background: #1a1a1a;
+  color: #ffffff;
 }
 
 .site-title {
@@ -78,6 +134,7 @@ import { RouterLink, RouterView } from "vue-router";
   color: inherit;
   font-family: "MontserratLocal", "Montserrat", sans-serif;
   font-weight: 700;
+  font-size: 0.84rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -86,22 +143,22 @@ import { RouterLink, RouterView } from "vue-router";
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0.95rem;
+  padding: 0.42rem 0.82rem;
   border-radius: 999px;
-  background: #efe2e5;
-  border: 1px solid rgba(115, 14, 14, 0.22);
+  background: #111111;
+  border: 1px solid rgba(255, 10, 138, 0.22);
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav-boton:hover {
-  background: #e8d7db;
-  border-color: rgba(115, 14, 14, 0.34);
+  background: #1a1a1a;
+  border-color: rgba(255, 10, 138, 0.34);
 }
 
 .portfolio-nav a.router-link-active {
-  color: #730e0e;
-  background: #730e0e;
-  border-color: #730e0e;
+  color: #ffffff;
+  background: #ff0a8a;
+  border-color: #ffffff;
   color: #fff;
 }
 
@@ -127,3 +184,4 @@ import { RouterLink, RouterView } from "vue-router";
   }
 }
 </style>
+

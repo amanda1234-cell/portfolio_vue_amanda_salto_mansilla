@@ -1,8 +1,16 @@
-<script setup lang="ts">
-import { ref, onUnmounted, computed } from "vue";
+﻿<script setup lang="ts">
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, Maximize2, ChevronLeft, ChevronRight, Palette } from "lucide-vue-next";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
+
+const route = useRoute();
+const rutaVolverAProyectos = computed(() => {
+  const categoria = route.query.categoria;
+  return typeof categoria === "string"
+    ? { path: "/portfolio/proyectos", query: { categoria } }
+    : "/portfolio/proyectos/categorias";
+});
 
 type MediaItem = { src: string; alt: string };
 
@@ -48,8 +56,41 @@ const anteriorFoto = () => {
   }
 };
 
+const esElementoEditable = (target: EventTarget | null) => {
+  if (!(target instanceof HTMLElement)) return false;
+  const tag = target.tagName;
+  return target.isContentEditable || tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+};
+
+const handleKeydown = (event: KeyboardEvent) => {
+  if (esElementoEditable(event.target)) return;
+
+  if (event.key === "Escape" && fotoActual.value) {
+    cerrarImagen();
+    event.preventDefault();
+    return;
+  }
+
+  if (!fotoActual.value || listaActual.value.length <= 1) return;
+
+  if (event.key === "ArrowRight") {
+    siguienteFoto();
+    event.preventDefault();
+  } else if (event.key === "ArrowLeft") {
+    anteriorFoto();
+    event.preventDefault();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
 onUnmounted(() => {
-  if (typeof window !== "undefined") document.body.style.overflow = "";
+  if (typeof window !== "undefined") {
+    window.removeEventListener("keydown", handleKeydown);
+    document.body.style.overflow = "";
+  }
 });
 
 const proyecto = {
@@ -64,14 +105,14 @@ const proyecto = {
       titulo: "Propuestas de carteles",
       icono: Palette,
       items: [
-        { src: "/proyectos/envidia/poster-minimalista.jpg", alt: "Póster minimalista de ojos" },
+        { src: "/proyectos/envidia/poster-minimalista.jpg", alt: "Póster minimalista" },
         {
           src: "/proyectos/envidia/poster-fotografico-collage.jpg",
-          alt: "Póster fotográfico y collage de rostro",
+          alt: "Póster fotográfico",
         },
         {
           src: "/proyectos/envidia/poster-textura-serpiente.jpg",
-          alt: "Póster de textura orgánica serpiente",
+          alt: "Póster de textura orgánica",
         },
       ],
     },
@@ -82,7 +123,7 @@ const proyecto = {
 <template>
   <div class="page-wrapper Envidia-editorial">
     <section class="detalle-kaoka">
-      <RouterLink to="/portfolio/proyectos" class="volver-link">
+      <RouterLink :to="rutaVolverAProyectos" class="volver-link">
         <Button class="boton-volver">
           <ArrowLeft :size="18" /> Volver a proyectos
         </Button>
@@ -162,14 +203,14 @@ const proyecto = {
 
 .detalle-kaoka {
   padding: clamp(1rem, 5vw, 4rem);
-  color: #730e0e;
+  color: #ffffff;
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .header-editorial {
-  margin: 4rem 0;
-  border-bottom: 1px solid rgba(115, 14, 14, 0.2);
+  margin: 4rem 0 5rem;
+  border-bottom: 1px solid rgba(255, 10, 138, 0.2);
   padding-bottom: 3rem;
 }
 
@@ -194,7 +235,7 @@ const proyecto = {
 }
 
 .bloque-seccion {
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
 }
 
 .subtitulo-seccion {
@@ -202,9 +243,9 @@ const proyecto = {
   letter-spacing: 0.1em;
   font-size: 1rem;
   font-weight: 800;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   padding-left: 1rem;
-  border-left: 4px solid #730e0e;
+  border-left: 4px solid #ff0a8a;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -217,64 +258,54 @@ const proyecto = {
 .grid-ajustado {
   display: flex;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  width: 100%;
+  align-items: flex-start;
 }
 
 .tarjeta-foto {
-  flex: 0 0 100%;
+  flex: 1;
+  min-width: 0;
   cursor: pointer;
 }
 
-@media (min-width: 640px) {
-  .tarjeta-foto {
-    flex: 0 0 calc(50% - 0.75rem);
-  }
+.items-1 .tarjeta-foto {
+  max-width: 450px;
+  margin: 0 auto;
 }
 
-@media (min-width: 1024px) {
-  .items-3 .tarjeta-foto {
-    flex: 0 0 calc(33.333% - 1rem);
-  }
-
-  .items-1 .tarjeta-foto {
-    flex: 0 0 450px;
-    margin: 0 auto;
-  }
-
-  .items-2 .tarjeta-foto {
-    flex: 0 0 calc(50% - 0.75rem);
-  }
+.items-2 .tarjeta-foto {
+  max-width: 500px;
 }
 
-.Envidia-contenedor {
+.contenedor-estandar {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
+  background: #111111;
+  border-radius: 4px;
   overflow: hidden;
-  border-radius: 8px;
   position: relative;
-  background: #fdf6f7;
-  border: 1px solid rgba(115, 14, 14, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(255, 10, 138, 0.1);
 }
 
 .foto-kaoka {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 10px;
-  transition: transform 0.4s ease;
+  padding: 15px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .tarjeta-foto:hover .foto-kaoka {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .overlay-zoom {
   position: absolute;
   inset: 0;
-  background: rgba(115, 14, 14, 0.3);
+  background: rgba(255, 10, 138, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,6 +322,7 @@ const proyecto = {
   font-size: 0.85rem;
   font-weight: 600;
   text-align: right;
+  color: rgba(255, 10, 138, 0.7);
 }
 
 .modal-overlay {
@@ -347,7 +379,7 @@ const proyecto = {
 }
 
 .btn-modal:hover {
-  background: rgba(115, 14, 14, 0.8);
+  background: rgba(255, 10, 138, 0.8);
   transform: scale(1.1);
 }
 
@@ -379,15 +411,23 @@ const proyecto = {
 
 .boton-volver {
   background: white;
-  border: 1px solid #dcc5cb;
-  color: #730e0e;
+  border: 1px solid #2a2a2a;
+  color: #ffffff;
   border-radius: 99px;
 }
 
 @media (max-width: 768px) {
+  .grid-ajustado {
+    flex-wrap: wrap;
+  }
+
   .tarjeta-foto {
-    flex: 0 0 90%;
-    margin: 0 auto;
+    flex: 0 0 calc(50% - 0.75rem);
+  }
+
+  .items-1 .tarjeta-foto,
+  .items-2 .tarjeta-foto {
+    max-width: 100%;
   }
 
   .flecha {
@@ -395,7 +435,7 @@ const proyecto = {
     bottom: 40px;
     height: 60px;
     margin: 0;
-    background: rgba(115, 14, 14, 0.6);
+    background: rgba(255, 10, 138, 0.6);
   }
 
   .izq {
@@ -412,3 +452,6 @@ const proyecto = {
   }
 }
 </style>
+
+
+

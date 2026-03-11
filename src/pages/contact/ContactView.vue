@@ -79,46 +79,60 @@ const enviarFormulario = async () => {
 
 <template>
   <section class="contact">
-    <h2 class="titulo-editorial">Contacto</h2>
-    <p>Si quieres colaborar conmigo, envíame un mensaje.</p>
-    <form class="contact-form" @submit.prevent="enviarFormulario">
-      <label>
-        <span class="campo-titulo"><UserRound :size="18" />Nombre</span>
-        <input v-model="nombre" type="text" required />
-        <small v-if="errores.nombre" class="error">{{ errores.nombre }}</small>
-      </label>
-      <label>
-        <span class="campo-titulo"><Mail :size="18" />Email</span>
-        <input v-model="correo" type="email" required />
-        <small v-if="errores.correo" class="error">{{ errores.correo }}</small>
-      </label>
-      <label>
-        <span class="campo-titulo"><MessageSquareText :size="18" />Mensaje</span>
-        <textarea v-model="mensaje" rows="4" required />
-        <small v-if="errores.mensaje" class="error">{{ errores.mensaje }}</small>
-      </label>
-      <Button
-        type="submit"
-        :disabled="enviando"
-        class="w-full rounded-xl border-0 bg-[#730E0E] text-white hover:bg-[#5f0c0c] sm:w-fit"
-      >
-        {{ enviando ? "Enviando..." : "Enviar" }}
-      </Button>
-    </form>
-    <p v-if="enviado" class="success">Mensaje enviado correctamente.</p>
-    <p v-if="errorEnvio" class="error-envio">{{ errorEnvio }}</p>
+    <div class="contact-paper">
+      <h2 class="titulo-editorial">Contacto</h2>
+      <p>¡Colaboremos!</p>
+      <form class="contact-form" @submit.prevent="enviarFormulario">
+        <label>
+          <span class="campo-titulo"><UserRound :size="18" />Nombre</span>
+          <input v-model="nombre" type="text" required />
+          <small v-if="errores.nombre" class="error">{{ errores.nombre }}</small>
+        </label>
+        <label>
+          <span class="campo-titulo"><Mail :size="18" />Email</span>
+          <input v-model="correo" type="email" required />
+          <small v-if="errores.correo" class="error">{{ errores.correo }}</small>
+        </label>
+        <label>
+          <span class="campo-titulo"><MessageSquareText :size="18" />Mensaje</span>
+          <textarea v-model="mensaje" rows="4" required />
+          <small v-if="errores.mensaje" class="error">{{ errores.mensaje }}</small>
+        </label>
+        <Button
+          type="submit"
+          :disabled="enviando"
+          class="w-full rounded-xl border-0 bg-[#ff0a8a] text-white hover:bg-[#c7006d] sm:w-fit"
+        >
+          {{ enviando ? "Enviando..." : "Enviar" }}
+        </Button>
+      </form>
+      <p v-if="enviado" class="success">Mensaje enviado correctamente.</p>
+      <p v-if="errorEnvio" class="error-envio">{{ errorEnvio }}</p>
+    </div>
   </section>
 </template>
 
 <style scoped>
 .contact {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border-radius: 0;
-  padding: 0.85rem;
-  color: #730e0e;
+  padding: 0.85rem 0;
+  color: #ffffff;
+  min-height: calc(100svh - 180px);
+}
+
+.contact-paper {
+  width: min(100%, 620px);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3.25rem 3rem 2.7rem;
+  color: #ffffff;
 }
 
 .contact-form {
@@ -132,10 +146,13 @@ const enviarFormulario = async () => {
 
 .titulo-editorial {
   margin: 0;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.8;
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  font-family: "MontserratLocal", "Montserrat", sans-serif;
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 1;
 }
 
 label {
@@ -148,6 +165,7 @@ label {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
+  color: #ffffff;
 }
 
 input,
@@ -155,9 +173,14 @@ textarea {
   border: 0;
   border-radius: 8px;
   padding: 0.6rem 0.75rem;
-  background: #ffffff;
-  color: #730e0e;
-  border: 1px solid #730e0e;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #ff0a8a;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 textarea {
@@ -166,22 +189,31 @@ textarea {
 }
 
 .error {
-  color: #730e0e;
+  color: #ffffff;
   font-size: 0.85rem;
 }
 
 .success {
-  color: #730e0e;
+  color: #ffffff;
 }
 
 .error-envio {
   margin: 0;
-  color: #730e0e;
+  color: #ffffff;
 }
 
 @media (min-width: 640px) {
   .contact {
-    padding: 1.25rem;
+    padding: 1.25rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-paper {
+    width: min(100%, 520px);
+    min-height: 480px;
+    padding: 2.6rem 2rem 2.2rem;
   }
 }
 </style>
+

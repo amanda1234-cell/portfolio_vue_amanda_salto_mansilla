@@ -3,17 +3,21 @@ import { categoryLabels, type ProjectCategory } from "@/data/projects";
 import { ArrowRight } from "lucide-vue-next";
 import { RouterLink } from "vue-router";
 
+const categoriasOcultas: ProjectCategory[] = ["ilustracion-digital", "ilustracion-grafica"];
+
 const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][]).map(
   ([id, titulo]) => ({
     id,
     titulo: titulo.toUpperCase(),
   }),
-);
+).filter((categoria) => !categoriasOcultas.includes(categoria.id));
+
+const totalCategorias = categorias.length;
 </script>
 
 <template>
   <section class="indice">
-    <p class="titulo-editorial">Indice de contenido</p>
+    <p class="titulo-editorial">Ãndice de contenido</p>
 
     <div class="lienzo-indice">
       <div class="bloque-centro">
@@ -22,7 +26,11 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
           <p class="subfirma">de contenido</p>
         </div>
 
-        <nav class="lista-indice" aria-label="Categorias de proyectos">
+        <nav
+          class="lista-indice"
+          :style="{ '--n-categorias': totalCategorias }"
+          aria-label="CategorÃ­as de proyectos"
+        >
           <RouterLink
             v-for="categoria in categorias"
             :key="categoria.id"
@@ -30,7 +38,7 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
             class="linea-indice"
           >
             <span>{{ categoria.titulo }}</span>
-            <ArrowRight :size="18" />
+            <ArrowRight :size="21" />
           </RouterLink>
         </nav>
       </div>
@@ -40,20 +48,21 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
 
 <style scoped>
 .indice {
-  color: #730e0e;
+  color: #ffffff;
 }
 
 .titulo-editorial {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.3rem;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.8;
+  opacity: 1;
   font-weight: 700;
+  color: #ff0a8a;
 }
 
 .lienzo-indice {
-  min-height: min(82svh, 760px);
+  min-height: calc(100svh - 165px);
   border-radius: 0;
   background: transparent;
   display: flex;
@@ -64,15 +73,18 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
 
 .bloque-centro {
   width: min(92%, 1080px);
-  margin: auto 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.25rem;
 }
 
 .marca-indice {
   margin-left: auto;
   margin-right: clamp(0.5rem, 4vw, 2rem);
-  margin-bottom: clamp(0.75rem, 2.5vh, 1.35rem);
+  margin-bottom: clamp(0.3rem, 1.2vh, 0.7rem);
   text-align: right;
-  color: #730e0e;
+  color: #ff0a8a;
 }
 
 .firma {
@@ -105,23 +117,30 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
 }
 
 .lista-indice {
-  border-top: 1px solid rgba(115, 14, 14, 0.45);
-  border-bottom: 1px solid rgba(115, 14, 14, 0.45);
+  --n-categorias: 5;
+  border-top: 1px solid rgba(255, 10, 138, 0.45);
+  border-bottom: 1px solid rgba(255, 10, 138, 0.45);
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(var(--n-categorias), minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 0;
 }
 
 .linea-indice {
   text-decoration: none;
-  color: #730e0e;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.65rem;
-  border-top: 1px solid rgba(115, 14, 14, 0.45);
-  padding: 0.55rem 1rem;
-  font-size: clamp(1.05rem, 2.6vw, 1.85rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.01em;
+  gap: 0.85rem;
+  border-top: 1px solid rgba(255, 10, 138, 0.45);
+  min-height: clamp(2.45rem, 6.1vh, 3.7rem);
+  padding: clamp(0.28rem, 0.72vh, 0.45rem) clamp(0.9rem, 1.7vw, 1.35rem);
+  font-size: clamp(0.96rem, calc(4.7svh / var(--n-categorias) + 0.36rem), 1.45rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -135,17 +154,19 @@ const categorias = (Object.entries(categoryLabels) as [ProjectCategory, string][
 }
 
 .linea-indice:hover {
-  background: #efe2e5;
-  color: #730e0e;
+  background: #111111;
+  color: #ffffff;
 }
 
 @media (min-width: 900px) {
   .lienzo-indice {
-    min-height: min(88svh, 980px);
+    min-height: calc(100svh - 180px);
   }
 
   .linea-indice {
-    padding: 0.62rem 1.45rem;
+    min-height: clamp(2.8rem, 6.6vh, 4rem);
+    padding: clamp(0.35rem, 0.8vh, 0.55rem) clamp(1.05rem, 2vw, 1.6rem);
   }
 }
 </style>
+
