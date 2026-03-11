@@ -1,7 +1,7 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
-import { Mail, MessageSquareText, UserRound } from "lucide-vue-next";
+import { Mail, MessageSquareText, Phone, UserRound } from "lucide-vue-next";
 import { reactive, ref } from "vue";
 
 const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -81,7 +81,7 @@ const enviarFormulario = async () => {
   <section class="contact">
     <div class="contact-paper">
       <h2 class="titulo-editorial">Contacto</h2>
-      <p>¡Colaboremos!</p>
+      <p class="telefono-contacto"><Phone :size="18" /> +34 655761387</p>
       <form class="contact-form" @submit.prevent="enviarFormulario">
         <label>
           <span class="campo-titulo"><UserRound :size="18" />Nombre</span>
@@ -95,7 +95,7 @@ const enviarFormulario = async () => {
         </label>
         <label>
           <span class="campo-titulo"><MessageSquareText :size="18" />Mensaje</span>
-          <textarea v-model="mensaje" rows="4" required />
+          <textarea v-model="mensaje" rows="4" required placeholder="¡Colaboremos!" />
           <small v-if="errores.mensaje" class="error">{{ errores.mensaje }}</small>
         </label>
         <Button
@@ -142,6 +142,14 @@ const enviarFormulario = async () => {
   width: 100%;
   max-width: 560px;
   margin-top: 0.8rem;
+}
+
+.telefono-contacto {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ff0a8a;
 }
 
 .titulo-editorial {
