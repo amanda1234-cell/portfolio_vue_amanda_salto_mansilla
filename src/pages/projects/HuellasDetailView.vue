@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X, Maximize2, ChevronLeft, ChevronRight, Fingerprint } from "lucide-vue-next";
@@ -365,15 +365,16 @@ const proyecto = {
 }
 
 .boton-volver {
-  background: transparent;
-  color: #888;
-  border: 1px solid #333;
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255, 10, 138, 0.22);
   border-radius: 99px;
 }
 
 .boton-volver:hover {
+  background: #1a1a1a;
   color: #fff;
-  border-color: #fff;
+  border-color: rgba(255, 10, 138, 0.34);
 }
 
 .fade-enter-active,

@@ -423,10 +423,15 @@ const proyecto = {
 }
 
 .boton-volver {
-  background: white;
-  border: 1px solid #2a2a2a;
+  background: #111111;
+  border: 1px solid rgba(255, 10, 138, 0.22);
   color: #ffffff;
   border-radius: 99px;
+}
+
+.boton-volver:hover {
+  background: #1a1a1a;
+  border-color: rgba(255, 10, 138, 0.34);
 }
 
 @media (max-width: 768px) {
