@@ -17,7 +17,7 @@ const totalCategorias = categorias.length;
 
 <template>
   <section class="indice">
-    <p class="titulo-editorial">Ãndice de contenido</p>
+    <p class="titulo-editorial">Índice de contenido</p>
 
     <div class="lienzo-indice">
       <div class="bloque-centro">
@@ -29,7 +29,7 @@ const totalCategorias = categorias.length;
         <nav
           class="lista-indice"
           :style="{ '--n-categorias': totalCategorias }"
-          aria-label="CategorÃ­as de proyectos"
+          aria-label="Categorías de proyectos"
         >
           <RouterLink
             v-for="categoria in categorias"

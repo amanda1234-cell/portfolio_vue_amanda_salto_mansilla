@@ -1,4 +1,4 @@
-ï»¿<script setup lang="ts">
+<script setup lang="ts">
 import { projects as proyectos } from "@/data/projects";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-vue-next";
@@ -49,8 +49,7 @@ const slots = computed(() => {
                 </p>
               </object>
               <a :href="slot.src" target="_blank" rel="noopener noreferrer" class="pdf-link">
-                Abrir PDF en otra pestaÃ±a
-              </a>
+                Abrir PDF en otra pestaña</a>
             </div>
           </template>
           <img
